@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public EngineFixedJoint leftEngine;
+    public EngineFixedJoint rightEngine;
+
     public GameObject frontLeftEngineSprite;
     public GameObject frontRightEngineSprite;
     public GameObject rearLeftEngineSprite;
     public GameObject rearRightEngineSprite;
+
+    public float acceleration;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +29,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             Debug.Log("A");
-            //leftEngine.Accelerate(acceleration);
+            leftEngine.Accelerate(acceleration);
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -43,7 +48,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             Debug.Log("D");
-            //rightEngine.Accelerate(acceleration);
+            rightEngine.Accelerate(acceleration);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
@@ -62,7 +67,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             Debug.Log("Q");
-            //leftEngine.Accelerate(-1 * acceleration);
+            leftEngine.Accelerate(-1 * acceleration);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -81,7 +86,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             Debug.Log("E");
-            //rightEngine.Accelerate(-1 * acceleration);
+            rightEngine.Accelerate(-1 * acceleration);
         }
 
         if (Input.GetKeyDown(KeyCode.E))

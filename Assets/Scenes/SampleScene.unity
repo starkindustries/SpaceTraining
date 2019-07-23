@@ -120,6 +120,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &105837484 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 538570188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &225824814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1717052947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +265,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrontRightEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5146519469984543079, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -315,6 +332,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5146519469984543079, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
     type: 3}
   m_PrefabInstance: {fileID: 538570188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &557289918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5146519470540906662}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &557289921 stripped
 Transform:
@@ -551,6 +574,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1629765284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1660120301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1660120301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -561,7 +590,12 @@ PrefabInstance:
     - target: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
         type: 3}
       propertyPath: m_Name
-      value: RearLeftEngine
+      value: RearRightEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5146519469984543079, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
         type: 3}
@@ -642,6 +676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RearLeftEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5146519469984543079, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
         type: 3}
@@ -796,6 +835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2137021203}
   - component: {fileID: 2137021202}
+  - component: {fileID: 2137021204}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -872,6 +912,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2137021204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137021201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067aca6e3eec5fb4696dcc77c628ca12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontLeftEngineSprite: {fileID: 557289918}
+  frontRightEngineSprite: {fileID: 105837484}
+  rearLeftEngineSprite: {fileID: 225824814}
+  rearRightEngineSprite: {fileID: 1629765284}
 --- !u!1001 &5146519470540906662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -883,6 +939,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FrontLeftEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146519469984543000, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5146519469984543079, guid: 9e46335b2a9d0d44cb7208372a8a5c0e,
         type: 3}

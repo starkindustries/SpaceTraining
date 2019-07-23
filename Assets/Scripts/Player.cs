@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
         // *******************
         if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("A");
             leftEngine.Accelerate(acceleration);
         }
 
@@ -47,7 +46,6 @@ public class Player : MonoBehaviour
         // *******************
         if (Input.GetKey(KeyCode.D))
         {
-            Debug.Log("D");
             rightEngine.Accelerate(acceleration);
         }
 
@@ -66,7 +64,6 @@ public class Player : MonoBehaviour
         // *******************
         if (Input.GetKey(KeyCode.Q))
         {
-            Debug.Log("Q");
             leftEngine.Accelerate(-1 * acceleration);
         }
 
@@ -85,7 +82,6 @@ public class Player : MonoBehaviour
         // *******************
         if (Input.GetKey(KeyCode.E))
         {
-            Debug.Log("E");
             rightEngine.Accelerate(-1 * acceleration);
         }
 

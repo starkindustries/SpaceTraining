@@ -11,13 +11,16 @@ public class Player : MonoBehaviour
     public GameObject frontRightEngineSprite;
     public GameObject rearLeftEngineSprite;
     public GameObject rearRightEngineSprite;
-
     public float acceleration;
+
+    public Transform firePoint;
+    public GameObject bullet;
+    public float bulletSpeed;    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -93,6 +96,15 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E))
         {
             frontRightEngineSprite.SetActive(false);
+        }
+
+        // *******************
+        // Shoot
+        // *******************
+        if (Input.GetButtonDown("Fire1"))
+        {
+            GameObject myBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            myBullet.GetComponent<Rigidbody2D>().velocity = firePoint.up * bulletSpeed;
         }
     }
 }

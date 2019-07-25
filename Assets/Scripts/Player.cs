@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         // *******************
         // Shoot
         // *******************
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Jump"))
         {
             GameObject myBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             myBullet.GetComponent<Rigidbody2D>().velocity = firePoint.up * bulletSpeed;

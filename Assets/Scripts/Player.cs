@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
 
     // Animation
     private Animator animator;
-    private bool isAccelerating;
 
     // Start is called before the first frame update
     void Start()
@@ -45,26 +44,25 @@ public class Player : MonoBehaviour
             GameObject myBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             myBullet.GetComponent<Rigidbody2D>().velocity = firePoint.up * bulletSpeed;
         }
-        
+
         // Joystick Movement
-        if (joystick.Horizontal != 0 && joystick.Vertical != 0)
-        {
-            joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
-            isAccelerating = true;
-        }
-        else
-        {
-            isAccelerating = false;            
-        }               
+        joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;               
     }
 
     private void FixedUpdate()
     {   
-        // THIS WORKS
+        // Set player velocity
         Vector3 targetVelocity = joystickInput * acceleration * 10 * Time.deltaTime;
         rb.velocity = Vector2.SmoothDamp(current: rb.velocity, target: targetVelocity, currentVelocity: ref currentVelocity, smoothTime: movementSmoothing);
-        transform.up = joystickInput;
-        animator.SetBool("IsAccelerating", isAccelerating);
+
+        // Face player with the joystick input
+        if (joystickInput.magnitude > 0)
+        {
+            transform.up = joystickInput;
+        }       
+        
+        // Set acceleration animation
+        animator.SetBool("IsAccelerating", joystickInput.magnitude > 0);
     }
 
     private void OnDrawGizmos()

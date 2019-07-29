@@ -3,108 +3,96 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
-    public EngineFixedJoint leftEngine;
-    public EngineFixedJoint rightEngine;
-
-    public GameObject frontLeftEngineSprite;
-    public GameObject frontRightEngineSprite;
-    public GameObject rearLeftEngineSprite;
-    public GameObject rearRightEngineSprite;
-    public float acceleration;
-
+{    
+    // Shooting
     public Transform firePoint;
     public GameObject bullet;
-    public float bulletSpeed;    
+    public float bulletSpeed;
+
+    // Player Input
+    public Joystick joystick;
+    // private Vector2 joystickInput;
+
+    // Movement    
+    [Range(0, .3f)]
+    [SerializeField]
+    private float movementSmoothing = .05f;  // How much to smooth out the movement
+
+    [Range(10f, 50f)]
+    [SerializeField]
+    private float acceleration = 30f;
+
+    private Rigidbody2D rb;
+    private Vector2 currentVelocity = Vector3.zero; // Used in the SmoothDamp function
+
+    // Animation
+    private Animator animator;
+    private bool isAccelerating;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
-
+    
     // Update is called once per frame
     void Update()
-    {
-        // *******************
-        // rear left engine
-        // *******************
-        if (Input.GetKey(KeyCode.A))
-        {
-            leftEngine.Accelerate(acceleration);
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            rearLeftEngineSprite.SetActive(true);
-        }
-
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            rearLeftEngineSprite.SetActive(false);
-        }
-
-        // *******************
-        // rear right engine
-        // *******************
-        if (Input.GetKey(KeyCode.D))
-        {
-            rightEngine.Accelerate(acceleration);
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            rearRightEngineSprite.SetActive(true);
-        }
-
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            rearRightEngineSprite.SetActive(false);
-        }
-
-        // *******************
-        // front left engine
-        // *******************
-        if (Input.GetKey(KeyCode.Q))
-        {
-            leftEngine.Accelerate(-1 * acceleration);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            frontLeftEngineSprite.SetActive(true);
-        }
-
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            frontLeftEngineSprite.SetActive(false);
-        }
-
-        // *******************
-        // front right engine
-        // *******************
-        if (Input.GetKey(KeyCode.E))
-        {
-            rightEngine.Accelerate(-1 * acceleration);
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            frontRightEngineSprite.SetActive(true);
-        }
-
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            frontRightEngineSprite.SetActive(false);
-        }
-
-        // *******************
-        // Shoot
-        // *******************
+    {        
+        // Shoot        
         if (Input.GetButtonDown("Jump"))
         {
             GameObject myBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             myBullet.GetComponent<Rigidbody2D>().velocity = firePoint.up * bulletSpeed;
         }
+        /*
+        // Joystick Movement
+        if (joystick.Horizontal != 0 && joystick.Vertical != 0)
+        {
+            Vector2 joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
+            Vector3 targetVelocity = joystickInput * acceleration * 10 * Time.deltaTime;
+            rb.velocity = Vector2.SmoothDamp(current: rb.velocity, target: targetVelocity, currentVelocity: ref currentVelocity, smoothTime: movementSmoothing);
+            transform.up = joystickInput;
+            animator.SetBool("IsAccelerating", true);
+        }
+        else
+        {
+            isAccelerating = false;
+        }
+        */
+        // Set acceleration animation
+        animator.SetBool("IsAccelerating", isAccelerating);
+    }
+
+    private void FixedUpdate()
+    {   
+        // THIS WORKS
+        if (joystick.Horizontal != 0 && joystick.Vertical != 0)
+        {
+            Vector2 joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
+            Vector3 targetVelocity = joystickInput * acceleration * 10 * Time.deltaTime;
+            rb.velocity = Vector2.SmoothDamp(current: rb.velocity, target: targetVelocity, currentVelocity: ref currentVelocity, smoothTime: movementSmoothing);            
+            transform.up = joystickInput;
+            isAccelerating = true;            
+        }
+        else
+        {
+            isAccelerating = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Draw a line from the player towards the joystick's direction
+        // First create a new vector3 with joystick's horizontal and vertical. Then add the current player's position
+        Vector3 toPosition = new Vector3(joystick.Horizontal, joystick.Vertical) + transform.position;
+        Gizmos.DrawLine(from: transform.position, to: toPosition);
+
+        // Show the current joystick values
+        string text = joystick.Horizontal.ToString() + " " + joystick.Vertical.ToString();
+        UnityEditor.Handles.Label(position: transform.position, text: text);
+
+        // Draw a sphere where the joystick position is relative to the player
+        Gizmos.DrawWireSphere(center: toPosition, radius: 0.2f);        
     }
 }

@@ -146,9 +146,11 @@ MonoBehaviour:
   rearLeftEngineSprite: {fileID: 6262961034575569868}
   rearRightEngineSprite: {fileID: 6262961034631719218}
   acceleration: 5
+  rotationSpeed: 500
   firePoint: {fileID: 8515467411463342511}
   bullet: {fileID: 4761625024301266648, guid: 2736ec792a6f0954db5aa5b73231cea9, type: 3}
   bulletSpeed: 20
+  joystick: {fileID: 0}
 --- !u!1 &5442410738299072308
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     // Player Input
     public Joystick joystick;
-    // private Vector2 joystickInput;
+    private Vector2 joystickInput;
 
     // Movement    
     [Range(0, .3f)]
@@ -45,40 +45,26 @@ public class Player : MonoBehaviour
             GameObject myBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             myBullet.GetComponent<Rigidbody2D>().velocity = firePoint.up * bulletSpeed;
         }
-        /*
+        
         // Joystick Movement
         if (joystick.Horizontal != 0 && joystick.Vertical != 0)
         {
-            Vector2 joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
-            Vector3 targetVelocity = joystickInput * acceleration * 10 * Time.deltaTime;
-            rb.velocity = Vector2.SmoothDamp(current: rb.velocity, target: targetVelocity, currentVelocity: ref currentVelocity, smoothTime: movementSmoothing);
-            transform.up = joystickInput;
-            animator.SetBool("IsAccelerating", true);
+            joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
+            isAccelerating = true;
         }
         else
         {
-            isAccelerating = false;
-        }
-        */
-        // Set acceleration animation
-        animator.SetBool("IsAccelerating", isAccelerating);
+            isAccelerating = false;            
+        }               
     }
 
     private void FixedUpdate()
     {   
         // THIS WORKS
-        if (joystick.Horizontal != 0 && joystick.Vertical != 0)
-        {
-            Vector2 joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
-            Vector3 targetVelocity = joystickInput * acceleration * 10 * Time.deltaTime;
-            rb.velocity = Vector2.SmoothDamp(current: rb.velocity, target: targetVelocity, currentVelocity: ref currentVelocity, smoothTime: movementSmoothing);            
-            transform.up = joystickInput;
-            isAccelerating = true;            
-        }
-        else
-        {
-            isAccelerating = false;
-        }
+        Vector3 targetVelocity = joystickInput * acceleration * 10 * Time.deltaTime;
+        rb.velocity = Vector2.SmoothDamp(current: rb.velocity, target: targetVelocity, currentVelocity: ref currentVelocity, smoothTime: movementSmoothing);
+        transform.up = joystickInput;
+        animator.SetBool("IsAccelerating", isAccelerating);
     }
 
     private void OnDrawGizmos()

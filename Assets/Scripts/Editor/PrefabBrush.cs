@@ -8,30 +8,15 @@ namespace UnityEditor
 {
     [CreateAssetMenu(fileName = "Prefab brush", menuName = "Brushes/Prefab brush")]
     [CustomGridBrush(false, true, false, "Prefab Brush")]
-    public class PrefabBrush : GridBrush
+    public class PrefabBrush : GridBrushBase
     {
         private const float k_PerlinOffset = 100000f;
         public GameObject[] m_Prefabs;
         public float m_PerlinScale = 0.5f;
         public int m_Z;
-        private GameObject prev_brushTarget;
-        private Vector3Int prev_position;
 
         public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position)
         {
-            Transform itemInCell = GetObjectInCell(grid, brushTarget.transform, new Vector3Int(position.x, position.y, m_Z));
-            if (itemInCell != null) return;
-            if (position == prev_position)
-            {
-                return;
-            }
-            prev_position = position;
-            if (brushTarget)
-            {
-                prev_brushTarget = brushTarget;
-            }
-            brushTarget = prev_brushTarget;
-
             // Do not allow editing palettes
             if (brushTarget.layer == 31)
                 return;
@@ -50,11 +35,6 @@ namespace UnityEditor
 
         public override void Erase(GridLayout grid, GameObject brushTarget, Vector3Int position)
         {
-            if (brushTarget)
-            {
-                prev_brushTarget = brushTarget;
-            }
-            brushTarget = prev_brushTarget;
             // Do not allow editing palettes
             if (brushTarget.layer == 31)
                 return;
@@ -87,16 +67,15 @@ namespace UnityEditor
     }
 
     [CustomEditor(typeof(PrefabBrush))]
-    public class PrefabBrushEditor : GridBrushEditor
+    public class PrefabBrushEditor : GridBrushEditorBase
     {
         private PrefabBrush prefabBrush { get { return target as PrefabBrush; } }
 
         private SerializedProperty m_Prefabs;
         private SerializedObject m_SerializedObject;
 
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
             m_SerializedObject = new SerializedObject(target);
             m_Prefabs = m_SerializedObject.FindProperty("m_Prefabs");
         }

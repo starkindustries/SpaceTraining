@@ -155,3 +155,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 906677235337120496, guid: c618a3cd95031204883c3b7f9cdcfeb8,
     type: 3}
+  minimumBulletSpeed: 0.1

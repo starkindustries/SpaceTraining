@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public GameObject explosionPrefab;
+    public float minimumBulletSpeed;
 
     private Rigidbody2D rb;
 
@@ -17,10 +18,6 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb.IsSleeping())
-        {
-            Explode();
-        }        
     }
 
     private void OnCollisionEnter2D(Collision2D other)

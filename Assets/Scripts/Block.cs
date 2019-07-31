@@ -6,11 +6,12 @@ public class Block : MonoBehaviour
 {
     [SerializeField]
     private int hitPoints;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class Block : MonoBehaviour
     {
         Debug.Log("block struct. hit points: " + hitPoints);
         hitPoints--;
+        animator.SetTrigger("Shake");
         if (hitPoints < 1)
         {
             Destroy(this.gameObject);

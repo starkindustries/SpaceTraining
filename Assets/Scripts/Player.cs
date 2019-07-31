@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public float bulletSpeed;
     public int bulletBurstCount;
-    public int fireRate; 
+    public float fireRate; 
 
     // Player Input
     public Joystick joystick;

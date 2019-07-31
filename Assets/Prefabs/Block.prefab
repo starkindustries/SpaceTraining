@@ -120,4 +120,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da54ae5f45960594ca628923062cc951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whiteFlash: {fileID: 2100000, guid: 57a3af7daa45ee8478acb18983f7be1e, type: 2}
   hitPoints: 5

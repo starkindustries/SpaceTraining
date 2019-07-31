@@ -5,11 +5,19 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     [SerializeField]
+    private Material whiteFlash;
+    private Material defaultMaterial;
+
+    [SerializeField]
     private int hitPoints;
+
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
-    {       
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultMaterial = spriteRenderer.material;
     }
 
     // Update is called once per frame
@@ -22,9 +30,23 @@ public class Block : MonoBehaviour
     {
         Debug.Log("block struct. hit points: " + hitPoints);
         hitPoints--;
+        
+        StartCoroutine(HitAnimation());
+
+        // Destroy block if HP = 0
         if (hitPoints < 1)
         {
             Destroy(this.gameObject);
         }       
+    }
+
+    // White Flash Effect
+    private IEnumerator HitAnimation()
+    {
+        // Enable white flash material
+        spriteRenderer.material = whiteFlash;
+        yield return new WaitForSeconds(0.1f);
+        // Re-enable default material
+        spriteRenderer.material = defaultMaterial;
     }
 }

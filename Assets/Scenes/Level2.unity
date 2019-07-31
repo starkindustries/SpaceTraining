@@ -4196,19 +4196,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1262870262283136979, guid: 87337acf77f32604cbac457b052bfc85,
         type: 3}
-      propertyPath: acceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1262870262283136979, guid: 87337acf77f32604cbac457b052bfc85,
-        type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 1630780339}
-    - target: {fileID: 1262870262283136979, guid: 87337acf77f32604cbac457b052bfc85,
-        type: 3}
-      propertyPath: movementSmoothing
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 1262870262283136978, guid: 87337acf77f32604cbac457b052bfc85,
         type: 3}
       propertyPath: m_Constraints

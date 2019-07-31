@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public Transform firePoint;
     public GameObject bullet;
     public float bulletSpeed;
+    public int bulletBurstCount;
+    public int fireRate; 
 
     // Player Input
     public Joystick joystick;
@@ -41,8 +43,7 @@ public class Player : MonoBehaviour
         // Shoot        
         if (Input.GetButtonDown("Jump"))
         {
-            GameObject myBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
-            myBullet.GetComponent<Rigidbody2D>().velocity = firePoint.up * bulletSpeed;
+            StartCoroutine(BurstFire());            
         }
 
         // Joystick Movement
@@ -63,6 +64,15 @@ public class Player : MonoBehaviour
         
         // Set acceleration animation
         animator.SetBool("IsAccelerating", joystickInput.magnitude > 0);
+    }
+
+    private IEnumerator BurstFire()
+    {
+        for (int i = 0; i < bulletBurstCount; i++) {
+            GameObject myBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            myBullet.GetComponent<Rigidbody2D>().velocity = firePoint.up * bulletSpeed;
+            yield return new WaitForSeconds(1 / fireRate);
+        }
     }
 
     private void OnDrawGizmos()

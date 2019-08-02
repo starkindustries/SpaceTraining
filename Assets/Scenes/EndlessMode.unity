@@ -1799,6 +1799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPrefabs:
   - {fileID: 7783214970547588923, guid: b7e0ce6f7ff89ae4293ecb3ac80d336a, type: 3}
+  - {fileID: 893690474543033623, guid: 9d1b22a81a164b94895897b37af8fe3f, type: 3}
   tilemap: {fileID: 1671914813}
   levelWidth: 25
 --- !u!4 &1501626373

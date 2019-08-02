@@ -1802,6 +1802,7 @@ MonoBehaviour:
   - {fileID: 893690474543033623, guid: 9d1b22a81a164b94895897b37af8fe3f, type: 3}
   tilemap: {fileID: 1671914813}
   levelWidth: 25
+  blockShiftInterval: 5
 --- !u!4 &1501626373
 Transform:
   m_ObjectHideFlags: 0

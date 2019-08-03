@@ -10,9 +10,15 @@ public class EndlessMode : MonoBehaviour
     public int levelWidth;
     public float blockShiftInterval;
 
-    // Origin is the grid coordinate of the top left block position,
+    // Origin is the grid coordinate of the top left position of the border
     // which all other blocks can be positioned off of via an offset
-    private Vector3 origin = new Vector3(x: -0.5f, y: 23.5f);
+    // xoxxxxxxxxxxxxxxxxxxxxxxx  <=== here, o = origin
+    // x                       x  <=== the border box
+    // x                       x
+    // 
+    // Origin is set here so that blocks can be generated behind the top border
+    // and then slide down into the playable space.
+    private Vector3 origin = new Vector3(x: -0.5f, y: 24.5f);
     private float timeSinceLastBlockShift;
 
     private List<GameObject> blocks;
@@ -38,13 +44,12 @@ public class EndlessMode : MonoBehaviour
             // https://stackoverflow.com/questions/3069748/how-to-remove-all-the-null-elements-inside-a-generic-list-in-one-go
             blocks.RemoveAll(item => item == null);
 
-            // Shift blocks down
-            ShiftBlocksDown();
-            // blocks = BrickBreaker.ShiftBlocksDown(blocks: blocks);
-
             // Generate new row of blocks
             List<GameObject> row = BrickBreaker.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: 0f, origin: origin, parent: tilemap);
             blocks.AddRange(row);
+
+            // Shift blocks down
+            ShiftBlocksDown();            
         }
     }
     

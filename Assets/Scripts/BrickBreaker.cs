@@ -64,22 +64,5 @@ public static class BrickBreaker
             }
         }
         return indices;
-    }
-
-    // This function shifts all blocks down one position.
-    // In addition, it removes all null/destroyed blocks and returns the new blocks list.
-    public static List<GameObject> ShiftBlocksDown(List<GameObject> blocks)
-    {
-        // Remove all null elements. These are destroyed blocks
-        // https://stackoverflow.com/questions/3069748/how-to-remove-all-the-null-elements-inside-a-generic-list-in-one-go
-        blocks.RemoveAll(item => item == null);
-
-        // Loop through the remaining blocks and shift their position down
-        foreach (GameObject block in blocks)
-        {
-            block.transform.position += new Vector3(x: 0, y: -1);            
-        }
-        
-        return blocks;
-    }
+    }    
 }

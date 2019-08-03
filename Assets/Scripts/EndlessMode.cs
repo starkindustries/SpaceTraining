@@ -33,9 +33,42 @@ public class EndlessMode : MonoBehaviour
         if (timeSinceLastBlockShift > blockShiftInterval)
         {
             timeSinceLastBlockShift = 0;
-            blocks = BrickBreaker.ShiftBlocksDown(blocks: blocks);
+
+            // Remove all null/destroyed blocks
+            // https://stackoverflow.com/questions/3069748/how-to-remove-all-the-null-elements-inside-a-generic-list-in-one-go
+            blocks.RemoveAll(item => item == null);
+
+            // Shift blocks down
+            ShiftBlocksDown();
+            // blocks = BrickBreaker.ShiftBlocksDown(blocks: blocks);
+
+            // Generate new row of blocks
             List<GameObject> row = BrickBreaker.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: 0f, origin: origin, parent: tilemap);
             blocks.AddRange(row);
+        }
+    }
+    
+    private void ShiftBlocksDown()
+    {
+        foreach (GameObject block in blocks)
+        {
+            StartCoroutine(ShiftBlock(block: block));
+        }        
+    }
+
+    private IEnumerator ShiftBlock(GameObject block)
+    {
+        // Check if block is null
+        if (block == null)
+        {
+            yield break;
+        }
+
+        Vector3 oldPosition = block.transform.position;
+        for(int i = 0; i <= 10; i++)
+        {            
+            block.transform.position = oldPosition + new Vector3(x: 0, y: -1) * i / 10;            
+            yield return new WaitForSeconds(1 / 10);
         }        
     }
 }

@@ -66,18 +66,20 @@ public static class BrickBreaker
         return indices;
     }
 
-    public static void ShiftBlocksDown(List<GameObject> blocks)
-    {        
-        foreach(GameObject block in blocks)
+    // This function shifts all blocks down one position.
+    // In addition, it removes all null/destroyed blocks and returns the new blocks list.
+    public static List<GameObject> ShiftBlocksDown(List<GameObject> blocks)
+    {
+        // Remove all null elements. These are destroyed blocks
+        // https://stackoverflow.com/questions/3069748/how-to-remove-all-the-null-elements-inside-a-generic-list-in-one-go
+        blocks.RemoveAll(item => item == null);
+
+        // Loop through the remaining blocks and shift their position down
+        foreach (GameObject block in blocks)
         {
-            // TODO: do a try catch 
-            /*
-             *  MissingReferenceException: The object of type 'GameObject' has been destroyed but you are still trying to access it.
-             *  Your script should either check if it is null or you should not destroy the object.
-             *  BrickBreaker.ShiftBlocksDown (System.Collections.Generic.List`1[T] blocks) (at Assets/Scripts/BrickBreaker.cs:73)
-             *  EndlessMode.Update () (at Assets/Scripts/EndlessMode.cs:36)
-             */
-            block.transform.position += new Vector3(x: 0, y: -1);
+            block.transform.position += new Vector3(x: 0, y: -1);            
         }
+        
+        return blocks;
     }
 }

@@ -33,7 +33,7 @@ public class EndlessMode : MonoBehaviour
         if (timeSinceLastBlockShift > blockShiftInterval)
         {
             timeSinceLastBlockShift = 0;
-            BrickBreaker.ShiftBlocksDown(blocks: blocks);
+            blocks = BrickBreaker.ShiftBlocksDown(blocks: blocks);
             List<GameObject> row = BrickBreaker.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: 0f, origin: origin, parent: tilemap);
             blocks.AddRange(row);
         }        

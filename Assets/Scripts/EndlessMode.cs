@@ -71,7 +71,12 @@ public class EndlessMode : MonoBehaviour
 
         Vector3 oldPosition = block.transform.position;
         for(int i = 0; i <= 10; i++)
-        {            
+        {
+            // Check if block is null *again* because it could be destroyed between waits/yields
+            if (block == null)
+            {
+                yield break;
+            }
             block.transform.position = oldPosition + new Vector3(x: 0, y: -1) * i / 10;            
             yield return new WaitForSeconds(1 / 10);
         }        

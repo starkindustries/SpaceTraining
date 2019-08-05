@@ -5,7 +5,7 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     [SerializeField]
-    private Material whiteFlash;
+    private Material whiteFlash = null;
     private Material defaultMaterial;
 
     [SerializeField]

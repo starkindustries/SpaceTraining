@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator BurstFire()
     {
+        AudioManager.Instance.Play("Bullet");
         for (int i = 0; i < bulletBurstCount; i++) {
             GameObject myBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             myBullet.GetComponent<Rigidbody2D>().velocity = firePoint.up * bulletSpeed;

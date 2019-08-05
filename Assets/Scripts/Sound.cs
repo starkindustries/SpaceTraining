@@ -12,6 +12,8 @@ public class Sound
     [Range(.1f, 3f)]
     public float pitch;
     public bool loop;
+    [Range(0f, 1f)]
+    public float spatialBlend;
 
     private AudioSource source;
 
@@ -23,6 +25,7 @@ public class Sound
         source.volume = volume;
         source.pitch = pitch;
         source.loop = loop;
+        source.spatialBlend = spatialBlend;
     }
 
     public void Play()

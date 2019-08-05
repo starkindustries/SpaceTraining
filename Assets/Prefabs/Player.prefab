@@ -139,7 +139,7 @@ MonoBehaviour:
   bulletBurstCount: 5
   fireRate: 5
   joystick: {fileID: 0}
-  movementSmoothing: 0.15
+  movementSmoothing: 0.3
   acceleration: 30
 --- !u!1 &5442410738299072308
 GameObject:

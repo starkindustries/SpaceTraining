@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -76,6 +75,7 @@ public class Player : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         // Draw a line from the player towards the joystick's direction
@@ -85,9 +85,10 @@ public class Player : MonoBehaviour
 
         // Show the current joystick values
         string text = joystick.Horizontal.ToString() + " " + joystick.Vertical.ToString();
-        Handles.Label(position: transform.position, text: text);
+        UnityEditor.Handles.Label(position: transform.position, text: text);
 
         // Draw a sphere where the joystick position is relative to the player
         Gizmos.DrawWireSphere(center: toPosition, radius: 0.2f);        
     }
+#endif
 }

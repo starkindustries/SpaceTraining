@@ -39,15 +39,28 @@ public class Player : MonoBehaviour
     
     // Update is called once per frame
     void Update()
-    {        
-        // Shoot        
+    {
+#if UNITY_EDITOR
+        // Shoot
         if (Input.GetButtonDown("Jump"))
         {
             StartCoroutine(BurstFire());            
         }
+#endif
 
         // Joystick Movement
         joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;               
+
+        // Player Touches
+        foreach(Touch touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                // Shoot
+                Debug.Log("Touch began");
+                StartCoroutine(BurstFire());
+            }
+        }
     }
 
     private void FixedUpdate()

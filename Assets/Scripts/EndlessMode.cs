@@ -19,6 +19,7 @@ public class EndlessMode : MonoBehaviour
     // Origin is set here so that blocks can be generated behind the top border
     // and then slide down into the playable space.
     private Vector3 origin = new Vector3(x: -0.5f, y: 24.5f);
+    private float bottomY = -0.5f;
     private float timeSinceLastBlockShift;
 
     private List<GameObject> blocks;
@@ -58,6 +59,13 @@ public class EndlessMode : MonoBehaviour
         foreach (GameObject block in blocks)
         {
             StartCoroutine(ShiftBlock(block: block));
+
+            if (block.transform.position.y <= bottomY)
+            {
+                // Game Over
+                Debug.Log("GameOver");
+                Time.timeScale = 0;
+            }
         }        
     }
 
@@ -69,6 +77,7 @@ public class EndlessMode : MonoBehaviour
             yield break;
         }
 
+        // Shift block down one position
         Vector3 oldPosition = block.transform.position;
         for(int i = 0; i <= 10; i++)
         {
@@ -77,6 +86,7 @@ public class EndlessMode : MonoBehaviour
             {
                 yield break;
             }
+            // The block shifts down in 10 steps. Each step is 1/10th of a second.
             block.transform.position = oldPosition + new Vector3(x: 0, y: -1) * i / 10;            
             yield return new WaitForSeconds(1 / 10);
         }        

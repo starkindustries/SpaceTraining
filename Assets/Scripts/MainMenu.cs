@@ -18,14 +18,20 @@ public class MainMenu : MonoBehaviour
             if (touch.phase == TouchPhase.Ended)
             {
                 Debug.Log("Touch lifted. Start Game!");
-                SceneChanger.Instance.FadetoScene(1);
+                LoadGameScene();
             }
         }
 
         if(Input.GetMouseButtonUp(0))
         {
             Debug.Log("Mouse click. Start Game!");
-            SceneChanger.Instance.FadetoScene(1);
+            LoadGameScene();
         } 
+    }
+
+    private void LoadGameScene()
+    {
+        AudioManager.Instance.Play("Start");
+        SceneChanger.Instance.FadetoScene(1);
     }
 }

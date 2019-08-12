@@ -51,8 +51,8 @@ MonoBehaviour:
     loop: 0
     spatialBlend: 0
   - name: Bullet
-    clip: {fileID: 8300000, guid: 9d93f2daed927ae439ad8032c1fd99ba, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 6cbc69b3913950949bb7ab7812a71750, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0
     spatialBlend: 0

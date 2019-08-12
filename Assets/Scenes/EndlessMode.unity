@@ -1957,6 +1957,7 @@ MonoBehaviour:
   tilemap: {fileID: 1671914813}
   levelWidth: 25
   blockShiftInterval: 5
+  rowsToSpawn: 10
 --- !u!4 &1501626373
 Transform:
   m_ObjectHideFlags: 0

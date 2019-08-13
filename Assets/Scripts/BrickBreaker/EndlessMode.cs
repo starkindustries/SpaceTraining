@@ -61,6 +61,7 @@ public class EndlessMode : MonoBehaviour
             {
                 // Mission Complete! 
                 Debug.Log("MISSION COMPLETE!");
+                // Play level completed animation
                 Time.timeScale = 0;
                 return;
             }
@@ -87,34 +88,32 @@ public class EndlessMode : MonoBehaviour
             }
 
             // Shift blocks down
-            EndlessMode.ShiftBlocksDown(blocks, bottomY, this);
+            EndlessMode.ShiftBlocksDown(blocks, this);            
+        }
+
+        // Check for GameOver condition
+        // Note because the blocks spawn in from left to right, with the lowest row spawning first,
+        // the first block in the blocks array will always be the lowest leftmost block.
+        if (blocks.Count > 0)
+        {
+            if (blocks[0].transform.position.y <= bottomY)
+            {
+                // Game Over
+                Debug.Log("Block hit the bottom wall! GameOver!!");
+                Time.timeScale = 0;
+            }
         }
     }
     
     // Shifts a list of blocks down
     // Checks for the GameOver condition
     // Returns true if gameOver or false if not.
-    private static bool ShiftBlocksDown(List<GameObject> blocks, float bottomY, MonoBehaviour gameObject)
+    private static void ShiftBlocksDown(List<GameObject> blocks, MonoBehaviour gameObject)
     {
         foreach (GameObject block in blocks)
-        {
-            if (block.transform.position.y <= bottomY)
-            {
-                // Game Over
-                Debug.Log("GameOver");
-                Time.timeScale = 0;
-
-                // Note because the blocks spawn in from left to right, with the lowest row spawning first,
-                // the first block in the blocks array will always be the lowest leftmost block.
-                // By returning if the block is at the bottom, the StartCoroutine function will never be
-                // called because the first block checked is always the lowest leftmost block.
-                // This prevents the unwanted behavior of blocks shifting down one more row (into the wall) 
-                // after the game over condition is met.
-                return true;
-            }
+        {            
             gameObject.StartCoroutine(ShiftBlock(block: block));
         }
-        return false;
     }
 
     // Shifts a single block down one unit

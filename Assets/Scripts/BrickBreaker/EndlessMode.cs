@@ -33,6 +33,18 @@ public class EndlessMode : MonoBehaviour
         blocks = new List<GameObject>();
         timeSinceLastBlockShift = 0;
         rowSpawnCount = 0;
+
+        // Load player data
+        PlayerData data = SaveSystem.LoadPlayerData();
+        if (data == null)
+        {
+            // start new level
+            Debug.Log("No save file. Start new level");
+        }
+        else
+        {
+            Debug.Log("Save file found. Load player data!");
+        }
     }
 
     // Update is called once per frame
@@ -69,17 +81,20 @@ public class EndlessMode : MonoBehaviour
             // Generate new row of blocks if the limit has not been reached        
             if (rowSpawnCount < rowsToSpawn)
             {
-                List<GameObject> row = BrickBreaker.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: 0f, origin: origin, parent: tilemap);
+                List<GameObject> row = EndlessMode.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: 0f, origin: origin, parent: tilemap);
                 blocks.AddRange(row);
                 rowSpawnCount++;
             }
 
             // Shift blocks down
-            ShiftBlocksDown();
+            EndlessMode.ShiftBlocksDown(blocks, bottomY, this);
         }
     }
     
-    private void ShiftBlocksDown()
+    // Shifts a list of blocks down
+    // Checks for the GameOver condition
+    // Returns true if gameOver or false if not.
+    private static bool ShiftBlocksDown(List<GameObject> blocks, float bottomY, MonoBehaviour gameObject)
     {
         foreach (GameObject block in blocks)
         {
@@ -95,13 +110,15 @@ public class EndlessMode : MonoBehaviour
                 // called because the first block checked is always the lowest leftmost block.
                 // This prevents the unwanted behavior of blocks shifting down one more row (into the wall) 
                 // after the game over condition is met.
-                return;
+                return true;
             }
-            StartCoroutine(ShiftBlock(block: block));
-        }        
+            gameObject.StartCoroutine(ShiftBlock(block: block));
+        }
+        return false;
     }
 
-    private IEnumerator ShiftBlock(GameObject block)
+    // Shifts a single block down one unit
+    private static IEnumerator ShiftBlock(GameObject block)
     {
         // Check if block is null
         if (block == null)
@@ -122,5 +139,66 @@ public class EndlessMode : MonoBehaviour
             block.transform.position = oldPosition + new Vector3(x: 0, y: -1) * i / 10;            
             yield return new WaitForSeconds(1 / 10);
         }        
+    }
+
+    // Generates a row of block gameObjects. 
+    // rowLength:       the number of blocks (including blank blocks) to generate
+    // blocks:          the different block prefabs to choose from
+    // skipPercentage:  the chance that a block should be blank/skipped
+    // origin:          the x, y position of the topLeft block to use as an anchor for the rest of the blocks
+    // parent:          the tilemap to use as the parent obect
+    private static List<GameObject> GenerateRowOfBlocks(int rowLength, GameObject[] blocks, float skipPercentage, Vector3 origin, Tilemap parent)
+    {
+        List<int> blocksIndexList = GenerateRowOfIndices(rowLength, blocks.Length, skipPercentage);
+        List<GameObject> blocksList = new List<GameObject>();
+
+        for (int i = 0; i < blocksIndexList.Count; i++)
+        {
+            int index = blocksIndexList[i];
+            if (index < 0)
+            {
+                // skip block if index is -1
+            }
+            else
+            {
+                Vector3 position = origin + new Vector3(x: 1, y: 0) * i;
+                GameObject block = GameObject.Instantiate(original: blocks[index], position: position, rotation: Quaternion.identity, parent: parent.transform);
+                blocksList.Add(item: block);
+            }
+        }
+
+        return blocksList;
+    }
+
+    // Returns an array of integer indices. If the index is -1 then the the block is skipped.
+    // Skip percentage is the chance that a block should be blank/skipped.
+    // Skip percentage should be between 0 (0%, never skip) and 1 (100%, always skip)
+    private static List<int> GenerateRowOfIndices(int rowLength, int blockCount, float skipPercentage)
+    {
+        List<int> indices = new List<int>();
+
+        if (skipPercentage < 0 || skipPercentage > 1)
+        {
+            Debug.LogError("Incorrect skipPercentage value: " + skipPercentage + ". Value should be between 0 and 1 inclusive.");
+            skipPercentage = 0;
+        }
+
+        for (int i = 0; i < rowLength; i++)
+        {
+            // Check if this block should be blank/skipped
+            float shouldSkip = Random.Range(0f, 1f);
+            if (shouldSkip < skipPercentage)
+            {
+                // Skip block
+                indices.Add(item: -1);
+            }
+            else
+            {
+                // Add a random block
+                int index = Random.Range(0, blockCount);
+                indices.Add(item: index);
+            }
+        }
+        return indices;
     }
 }

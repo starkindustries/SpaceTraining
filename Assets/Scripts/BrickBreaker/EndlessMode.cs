@@ -30,9 +30,7 @@ public class EndlessMode : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        blocks = new List<GameObject>();
-        timeSinceLastBlockShift = 0;
-        rowSpawnCount = 0;
+        ResetGameData();
 
         // Load player data
         PlayerData data = SaveSystem.LoadPlayerData();
@@ -62,7 +60,10 @@ public class EndlessMode : MonoBehaviour
                 // Mission Complete! 
                 Debug.Log("MISSION COMPLETE!");
                 // Play level completed animation
-                Time.timeScale = 0;
+                // Reset the stage conditions
+                ResetGameData();
+                // Continue Game
+                // Time.timeScale = 0;
                 return;
             }
         }
@@ -104,7 +105,14 @@ public class EndlessMode : MonoBehaviour
             }
         }
     }
-    
+
+    private void ResetGameData()
+    {
+        blocks = new List<GameObject>();
+        timeSinceLastBlockShift = 0;
+        rowSpawnCount = 0;
+    }
+
     // Shifts a list of blocks down
     // Checks for the GameOver condition
     // Returns true if gameOver or false if not.

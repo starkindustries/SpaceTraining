@@ -414,7 +414,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.04004984, g: 0.097850144, b: 0.18867922, a: 0}
+  m_BackGroundColor: {r: 0.0627451, g: 0.02745098, b: 0.0627451, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -455,7 +455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 12, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -548,7 +548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569494927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 12, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1444780939}
@@ -2042,8 +2042,8 @@ MonoBehaviour:
   - {fileID: 893690474543033623, guid: 9d1b22a81a164b94895897b37af8fe3f, type: 3}
   tilemap: {fileID: 1671914813}
   levelWidth: 25
-  blockShiftInterval: 1
-  rowsToSpawn: 2
+  blockShiftInterval: 5
+  rowsToSpawn: 10
 --- !u!4 &1501626373
 Transform:
   m_ObjectHideFlags: 0
@@ -2317,12 +2317,12 @@ PrefabInstance:
     - target: {fileID: 1262870262283136980, guid: 87337acf77f32604cbac457b052bfc85,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1262870262283136980, guid: 87337acf77f32604cbac457b052bfc85,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1262870262283136980, guid: 87337acf77f32604cbac457b052bfc85,
         type: 3}

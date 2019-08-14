@@ -10,6 +10,7 @@ public class EndlessMode : MonoBehaviour
     public Tilemap tilemap;
     public int levelWidth;
     public float blockShiftInterval;
+    public int rowsToSpawn;
 
     // Origin is the grid coordinate of the top left position of the border
     // which all other blocks can be positioned off of via an offset
@@ -20,20 +21,26 @@ public class EndlessMode : MonoBehaviour
     // Origin is set here so that blocks can be generated behind the top border
     // and then slide down into the playable space.
     private Vector3 origin = new Vector3(x: -0.5f, y: 24.5f);
+
+    // bottomY is the lowest allowable block positin before GameOver
     private float bottomY = -0.5f;
+
+    // This keeps the time since the last block down-shift
     private float timeSinceLastBlockShift;
 
+    // All the blocks in the current level
     private List<GameObject> blocks;
 
-    private int rowSpawnCount;
-    public int rowsToSpawn = 1;
+    // Number of rows currently spawned
+    private int rowSpawnCount;    
 
+    // Player's current level
     private int currentLevel = 1;
 
     // Start is called before the first frame update
     private void Start()
     {
-        ResetGameData();        
+        SetGameData(1);
 
         // Load player data
         PlayerData data = SaveSystem.LoadPlayerData();
@@ -73,7 +80,7 @@ public class EndlessMode : MonoBehaviour
                 levelText.SetLevelAndAnimate(currentLevel);
                 
                 // Reset the stage conditions
-                ResetGameData();
+                SetGameData(currentLevel);
                 
                 // Continue Game                
             }
@@ -117,11 +124,20 @@ public class EndlessMode : MonoBehaviour
         }
     }
 
-    private void ResetGameData()
+    private void SetGameData(int level)
     {
+        // Reset tracker variables
         blocks = new List<GameObject>();
         timeSinceLastBlockShift = 0;
         rowSpawnCount = 0;
+
+        // Increase base level variables dependent on level
+        
+        // Increase number of rows every two levels
+        rowsToSpawn += level / 2;
+        
+        // Decrease block shift interval by 0.1 per level
+        blockShiftInterval += level * -0.1f;
     }
 
     // Shifts a list of blocks down

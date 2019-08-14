@@ -5,7 +5,6 @@ using TMPro;
 
 public class LevelTextSequenceAnimator : MonoBehaviour
 {
-    public int testLevel;
     public float charDelay;
 
     private List<Animator> textAnimators;

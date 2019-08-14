@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class EndlessMode : MonoBehaviour
 {
+    public LevelTextSequenceAnimator levelText;
     public GameObject[] blockPrefabs;
     public Tilemap tilemap;
     public int levelWidth;
@@ -27,10 +28,12 @@ public class EndlessMode : MonoBehaviour
     private int rowSpawnCount;
     public int rowsToSpawn = 1;
 
+    private int currentLevel = 1;
+
     // Start is called before the first frame update
     private void Start()
     {
-        ResetGameData();
+        ResetGameData();        
 
         // Load player data
         PlayerData data = SaveSystem.LoadPlayerData();
@@ -43,6 +46,9 @@ public class EndlessMode : MonoBehaviour
         {
             Debug.Log("Save file found. Load player data!");
         }
+
+        // Play level text animation
+        levelText.SetLevelAndAnimate(currentLevel);
     }
 
     // Update is called once per frame
@@ -59,12 +65,17 @@ public class EndlessMode : MonoBehaviour
             {
                 // Mission Complete! 
                 Debug.Log("MISSION COMPLETE!");
+
+                // Increment level and increase difficulty
+                currentLevel++;
+
                 // Play level completed animation
+                levelText.SetLevelAndAnimate(currentLevel);
+                
                 // Reset the stage conditions
                 ResetGameData();
-                // Continue Game
-                // Time.timeScale = 0;
-                return;
+                
+                // Continue Game                
             }
         }
 

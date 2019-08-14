@@ -2241,7 +2241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charDelay: 0.05
-  totalAnimationTime: 2
 --- !u!95 &1255656237
 Animator:
   serializedVersion: 3
@@ -2546,13 +2545,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aed433970fd98642be86729774d6581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelText: {fileID: 1255656236}
   blockPrefabs:
   - {fileID: 7783214970547588923, guid: b7e0ce6f7ff89ae4293ecb3ac80d336a, type: 3}
   - {fileID: 893690474543033623, guid: 9d1b22a81a164b94895897b37af8fe3f, type: 3}
   tilemap: {fileID: 1671914813}
   levelWidth: 25
-  blockShiftInterval: 5
-  rowsToSpawn: 10
+  blockShiftInterval: 1
+  rowsToSpawn: 2
 --- !u!4 &1501626373
 Transform:
   m_ObjectHideFlags: 0

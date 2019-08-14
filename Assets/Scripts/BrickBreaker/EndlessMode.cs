@@ -9,8 +9,11 @@ public class EndlessMode : MonoBehaviour
     public GameObject[] blockPrefabs;
     public Tilemap tilemap;
     public int levelWidth;
-    public float blockShiftInterval;
-    public int rowsToSpawn;
+    public float minBlockShiftInterval;
+    public int minRowsToSpawn;
+
+    private float blockShiftInterval;
+    private int rowsToSpawn;
 
     // Origin is the grid coordinate of the top left position of the border
     // which all other blocks can be positioned off of via an offset
@@ -134,10 +137,12 @@ public class EndlessMode : MonoBehaviour
         // Increase base level variables dependent on level
         
         // Increase number of rows every two levels
-        rowsToSpawn += level / 2;
+        rowsToSpawn = minRowsToSpawn + (level - 1) / 2;
         
         // Decrease block shift interval by 0.1 per level
-        blockShiftInterval += level * -0.1f;
+        blockShiftInterval = minBlockShiftInterval - (level - 1) * 0.1f;
+
+        Debug.Log("Level: " + level + ". Rows to spawn: " + rowsToSpawn + ". Interval: " + blockShiftInterval);
     }
 
     // Shifts a list of blocks down

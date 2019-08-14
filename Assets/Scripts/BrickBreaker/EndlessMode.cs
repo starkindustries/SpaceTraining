@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public class EndlessMode : MonoBehaviour
 {
-    public LevelTextSequenceAnimator levelText;
     public GameObject[] blockPrefabs;
     public Tilemap tilemap;
     public int levelWidth;
     public float minBlockShiftInterval;
     public int minRowsToSpawn;
+
+    // Level Text
+    public TextMeshProUGUI levelText;
+    public Animator levelTextAnimator;
 
     private float blockShiftInterval;
     private int rowsToSpawn;
@@ -58,7 +62,7 @@ public class EndlessMode : MonoBehaviour
         }
 
         // Play level text animation
-        levelText.SetLevelAndAnimate(currentLevel);
+        SetLevelAndAnimate(currentLevel);
     }
 
     // Update is called once per frame
@@ -80,7 +84,7 @@ public class EndlessMode : MonoBehaviour
                 currentLevel++;
 
                 // Play level completed animation
-                levelText.SetLevelAndAnimate(currentLevel);
+                SetLevelAndAnimate(currentLevel);
                 
                 // Reset the stage conditions
                 SetGameData(currentLevel);
@@ -143,6 +147,15 @@ public class EndlessMode : MonoBehaviour
         blockShiftInterval = minBlockShiftInterval - (level - 1) * 0.1f;
 
         Debug.Log("Level: " + level + ". Rows to spawn: " + rowsToSpawn + ". Interval: " + blockShiftInterval);
+    }
+
+    private void SetLevelAndAnimate(int level)
+    {
+        // Set the label's text to the current level
+        levelText.text = "LEVEL " + level.ToString();
+
+        // Set Slide animation trigger
+        levelTextAnimator.SetTrigger("SlideIn");
     }
 
     // Shifts a list of blocks down

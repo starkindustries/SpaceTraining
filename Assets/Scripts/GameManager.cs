@@ -15,4 +15,9 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void DidPressPauseButton()
+    {
+        Debug.Log("Pause button pressed");
+    }
 }

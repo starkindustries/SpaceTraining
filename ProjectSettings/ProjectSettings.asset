@@ -709,10 +709,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 33086cdb-df88-4df4-8f17-a0295740279f
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: SpaceBreaker
+  organizationId: s6-games-131238af-d732-4c7e-b7e2-097e78939e8f
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

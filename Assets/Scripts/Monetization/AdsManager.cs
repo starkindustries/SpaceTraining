@@ -5,33 +5,55 @@ using UnityEngine.Advertisements;
 
 public class AdsManager: MonoBehaviour
 {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
     private const string gameId = "3257633";
-    #endif
+#endif
 
-    #if UNITY_IOS
+#if UNITY_IOS
     private const string gameId = "3257632";
-    #endif
+#endif
+
+    public float timeBetweenAds = 60 * 5;
+
+    private float timeSinceLastAd = 0;
+
+    // Singleton pattern
+    // https://gamedev.stackexchange.com/a/116010/123894
+    private static AdsManager _instance;
+    public static AdsManager Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        // Singleton Enforcement Code
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
+        }        
+    }
 
     private void Start()
     {
         Advertisement.Initialize(gameId: gameId, testMode: true);
     }
 
-    public static void ShowRewardedAd(ShowOptions showOptions)
+    private void Update()
     {
-        Debug.Log("Showing rewarded ad");
-        const string placementId = "rewardedVideo";
+        timeSinceLastAd += Time.deltaTime;
+    }    
 
-        if (Advertisement.IsReady(placementId: placementId))
-        {
-            Advertisement.Show(placementId: placementId, showOptions: showOptions);
-        }
-    }
-
-    public static void ShowVideoAd()
+    public static void ShowVideoAdWhenReady()
     {
         const string placementId = "video";
+
+        if (Instance.timeSinceLastAd < Instance.timeBetweenAds)
+        {
+            return;
+        }
 
         if (Advertisement.IsReady(placementId: placementId))
         {

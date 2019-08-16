@@ -14,7 +14,7 @@ public class Block : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    private SpriteRenderer minimapSpriteRenderer;
+    private SpriteRenderer minimapSpriteRenderer = null;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,6 @@ public class Block : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMaterial = spriteRenderer.material;
         minimapSpriteRenderer.color = spriteRenderer.color;
-
     }
 
     // Update is called once per frame

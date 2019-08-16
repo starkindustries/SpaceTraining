@@ -44,6 +44,9 @@ public class EndlessMode : MonoBehaviour
     // Player's current level
     private int currentLevel = 1;
 
+    // Bool to prevent multiple SetupNextLevel() coroutine calls
+    private bool isSettingUpLevel = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -62,12 +65,17 @@ public class EndlessMode : MonoBehaviour
         }
 
         // Play level text animation
-        SetLevelAndAnimate(currentLevel);
+        SetLevelAndAnimate("LEVEL " + currentLevel);
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (isSettingUpLevel)
+        {
+            return;
+        }
+
         // Remove all null/destroyed blocks
         // https://stackoverflow.com/questions/3069748/how-to-remove-all-the-null-elements-inside-a-generic-list-in-one-go
         blocks.RemoveAll(item => item == null);
@@ -78,18 +86,8 @@ public class EndlessMode : MonoBehaviour
             if (blocks.Count == 0)
             {
                 // Mission Complete! 
-                Debug.Log("MISSION COMPLETE!");
-
-                // Increment level and increase difficulty
-                currentLevel++;
-
-                // Play level completed animation
-                SetLevelAndAnimate(currentLevel);
-                
-                // Reset the stage conditions
-                SetGameData(currentLevel);
-                
-                // Continue Game                
+                Debug.Log("MISSION COMPLETE!");                
+                StartCoroutine(SetupNextLevel());
             }
         }
 
@@ -129,6 +127,34 @@ public class EndlessMode : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
+    }        
+
+    private IEnumerator SetupNextLevel()
+    {
+        isSettingUpLevel = true;
+
+        // Mission complete. Show level clear text
+        SetLevelAndAnimate("CLEARED!");
+        yield return new WaitForSeconds(2.0f);
+        Time.timeScale = 0;
+
+        // Show Ad 
+        AdsManager.ShowVideoAdWhenReady();
+
+        // Resume time
+        Time.timeScale = 1;        
+
+        // Increment level and increase difficulty
+        currentLevel++;
+
+        // Show next level text
+        SetLevelAndAnimate("LEVEL " + currentLevel);
+        yield return new WaitForSeconds(2.0f);
+
+        // Reset the stage conditions
+        SetGameData(currentLevel);
+
+        isSettingUpLevel = false;
     }
 
     private void SetGameData(int level)
@@ -149,10 +175,10 @@ public class EndlessMode : MonoBehaviour
         Debug.Log("Level: " + level + ". Rows to spawn: " + rowsToSpawn + ". Interval: " + blockShiftInterval);
     }
 
-    private void SetLevelAndAnimate(int level)
+    private void SetLevelAndAnimate(string level)
     {
         // Set the label's text to the current level
-        levelText.text = "LEVEL " + level.ToString();
+        levelText.text = level;
 
         // Set Slide animation trigger
         levelTextAnimator.SetTrigger("SlideIn");
@@ -252,5 +278,5 @@ public class EndlessMode : MonoBehaviour
             }
         }
         return indices;
-    }
+    }    
 }

@@ -2228,6 +2228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4975c64cc6930fa40a27948396b731b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenAds: 60
 --- !u!1 &1551674545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,8 +2311,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1501626374}
-        m_MethodName: DidPressPauseButton
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

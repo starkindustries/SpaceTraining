@@ -3,8 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class AdsManager
+public class AdsManager: MonoBehaviour
 {
+    #if UNITY_ANDROID
+    private const string gameId = "3257633";
+    #endif
+
+    #if UNITY_IOS
+    private const string gameId = "3257632";
+    #endif
+
+    private void Start()
+    {
+        Advertisement.Initialize(gameId: gameId, testMode: true);
+    }
+
     public static void ShowRewardedAd(ShowOptions showOptions)
     {
         Debug.Log("Showing rewarded ad");

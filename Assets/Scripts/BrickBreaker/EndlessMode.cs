@@ -11,6 +11,8 @@ public class EndlessMode : MonoBehaviour
     public int levelWidth;
     public float minBlockShiftInterval;
     public int minRowsToSpawn;
+    [Range(0f, 1f)]
+    public float skipPercentage;
 
     // Level Text
     public TextMeshProUGUI levelText;
@@ -106,7 +108,7 @@ public class EndlessMode : MonoBehaviour
             // Generate new row of blocks if the limit has not been reached        
             if (rowSpawnCount < rowsToSpawn)
             {
-                List<GameObject> row = EndlessMode.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: 0f, origin: origin, parent: tilemap);
+                List<GameObject> row = EndlessMode.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: skipPercentage, origin: origin, parent: tilemap);
                 blocks.AddRange(row);
                 rowSpawnCount++;
             }
@@ -134,7 +136,7 @@ public class EndlessMode : MonoBehaviour
         isSettingUpLevel = true;
 
         // Mission complete. Show level clear text
-        SetLevelAndAnimate("CLEARED!");
+        SetLevelAndAnimate("CLEAR");
         yield return new WaitForSeconds(2.0f);
         Time.timeScale = 0;
 

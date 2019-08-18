@@ -2188,7 +2188,7 @@ MonoBehaviour:
   levelWidth: 25
   minBlockShiftInterval: 5
   minRowsToSpawn: 10
-  skipPercentage: 0
+  skipPercentage: 0.6
   levelText: {fileID: 1429320632}
   levelTextAnimator: {fileID: 349326499}
 --- !u!4 &1501626373
@@ -2219,6 +2219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseButton: {fileID: 1551674545}
   pauseMenu: {fileID: 4054763556101125904}
+  joystick: {fileID: 1539360204}
 --- !u!114 &1501626375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2232,6 +2233,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAds: 60
+--- !u!1 &1539360204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773939, guid: aaa2c939c0359ac4dbce3f49e8b90252,
+    type: 3}
+  m_PrefabInstance: {fileID: 473667802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1551674545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,7 +2447,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 473667802}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1539360204}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}

@@ -6,8 +6,28 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pauseButton;
     public GameObject pauseMenu;
+    public GameObject joystick;
 
     private bool gameIsPaused;
+
+    // Singleton pattern
+    // https://gamedev.stackexchange.com/a/116010/123894
+    private static GameManager _instance;
+    public static GameManager Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        // Singleton Enforcement Code
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +48,7 @@ public class GameManager : MonoBehaviour
         gameIsPaused = true;
         pauseButton.SetActive(false);
         pauseMenu.SetActive(true);
+        joystick.SetActive(false);
         Time.timeScale = 0f;
     }
 
@@ -36,6 +57,7 @@ public class GameManager : MonoBehaviour
         gameIsPaused = false;
         pauseButton.SetActive(true);
         pauseMenu.SetActive(false);
+        joystick.SetActive(true);
         Time.timeScale = 1f;
     }
 

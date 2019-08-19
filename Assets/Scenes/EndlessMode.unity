@@ -2540,6 +2540,7 @@ MonoBehaviour:
   pauseButton: {fileID: 1551674545}
   pauseMenu: {fileID: 5929008933005325354}
   gameOverMenu: {fileID: 7696470563079913069}
+  gameOverScoreText: {fileID: 1620148982}
   joystick: {fileID: 1539360204}
   scoreText: {fileID: 1093769187}
 --- !u!114 &1501626375
@@ -2763,6 +2764,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7929922c455c7b249b77b98471a071cc, type: 3}
+--- !u!114 &1620148982 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 990334104160828793, guid: 5134e00631b60424ebe8dd84622033e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 571837980}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1630780339 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,

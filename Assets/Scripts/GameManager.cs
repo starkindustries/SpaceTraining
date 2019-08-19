@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     // Game over menu
     public GameObject gameOverMenu;
+    public TextMeshProUGUI gameOverScoreText;
 
     // Joystick
     public GameObject joystick;        
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         // Hide pause and game over menus on first load
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
+        scoreText.text = "0";
 
         // Load player data & load level
     }
@@ -78,11 +80,20 @@ public class GameManager : MonoBehaviour
 
     public void DidTriggerGameOver()
     {
+        // Pause game
         gameIsPaused = true;
+        Time.timeScale = 0f;
+
+        // Show game over menu; disable others
         gameOverMenu.SetActive(true);
         pauseButton.SetActive(false);
         joystick.SetActive(false);
-        Time.timeScale = 0f;
+
+        // Show score
+        gameOverScoreText.text = "SCORE\n" + score;
+
+        // Hide the little score text
+        scoreText.gameObject.SetActive(false);        
     }
 
     public bool GameIsPaused()

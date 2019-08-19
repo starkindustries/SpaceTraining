@@ -22,10 +22,7 @@ public class MainMenu : MonoBehaviour
 
         // Show title and disable menuPanel on first load
         title.SetActive(true);
-        menuPanel.SetActive(false);
-
-        // TODO: delete this line:
-        // SaveSystem.SavePlayerData(highscore: 0, currentLevel: 0);
+        menuPanel.SetActive(false);        
 
         // Load Player data from save file
         data = SaveSystem.LoadPlayerData();

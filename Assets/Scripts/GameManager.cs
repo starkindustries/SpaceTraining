@@ -46,9 +46,7 @@ public class GameManager : MonoBehaviour
         // Hide pause and game over menus on first load
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
-        scoreText.text = "0";
-
-        // Load player data & load level
+        scoreText.text = "0";        
     }
     
     // Game Actions
@@ -93,7 +91,15 @@ public class GameManager : MonoBehaviour
         gameOverScoreText.text = "SCORE\n" + score;
 
         // Hide the little score text
-        scoreText.gameObject.SetActive(false);        
+        scoreText.gameObject.SetActive(false);
+
+        // Save high score
+        // Load player data & load level
+        PlayerData data = SaveSystem.LoadPlayerData();
+        if (score > data.highscore)
+        {
+            SaveSystem.SavePlayerData(highscore: score, currentLevel: 0);
+        }
     }
 
     public bool GameIsPaused()

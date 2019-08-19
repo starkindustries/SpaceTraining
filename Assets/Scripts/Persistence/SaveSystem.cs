@@ -6,13 +6,13 @@ public static class SaveSystem
 {
     private static string dataFileName = "/player.db";
 
-    public static void SavePlayerData(Player player)
+    public static void SavePlayerData(int highscore, int currentLevel)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + dataFileName;
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData playerData = new PlayerData(player);
+        PlayerData playerData = new PlayerData(highscore, currentLevel);
         formatter.Serialize(stream, playerData);
         stream.Close();
     }

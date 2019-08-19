@@ -59,7 +59,7 @@ public class EndlessMode : MonoBehaviour
         if (data == null)
         {
             // start new level
-            Debug.Log("No save file. Start new level");
+            Debug.LogError("No save file. Start new level");
         }
         else
         {

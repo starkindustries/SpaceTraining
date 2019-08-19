@@ -18,6 +18,10 @@ public class EndlessMode : MonoBehaviour
     public TextMeshProUGUI levelText;
     public Animator levelTextAnimator;
 
+    // Score
+    public TextMeshProUGUI scoreText;
+    private int score;
+
     private float blockShiftInterval;
     private int rowsToSpawn;
 
@@ -126,7 +130,7 @@ public class EndlessMode : MonoBehaviour
             {
                 // Game Over
                 Debug.Log("Block hit the bottom wall! GameOver!!");
-                Time.timeScale = 0;
+                GameManager.Instance.DidTriggerGameOver();
             }
         }
     }        
@@ -280,5 +284,10 @@ public class EndlessMode : MonoBehaviour
             }
         }
         return indices;
-    }    
+    }
+
+    public void AddToScore(int points)
+    {
+
+    }
 }

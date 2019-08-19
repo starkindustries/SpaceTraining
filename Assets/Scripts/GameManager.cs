@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
-{
+{    
     public GameObject pauseButton;
     public GameObject pauseMenu;
-    public GameObject joystick;
+    public GameObject gameOverMenu;
+    public GameObject joystick;    
 
-    private bool gameIsPaused;
+    private bool gameIsPaused;    
 
     // Singleton pattern
     // https://gamedev.stackexchange.com/a/116010/123894
@@ -31,7 +33,11 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {        
+        // Hide pause and game over menus on first load
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+
         // Load player data & load level
     }
 
@@ -61,11 +67,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void DidPressQuit()
+    public void DidPressMenu()
     {
-        Debug.Log("Quit game");
+        Debug.Log("Did press menu button.");
         SceneChanger.Instance.FadetoScene(sceneIndex: 0);
         Time.timeScale = 1f;
+    }
+
+    public void DidTriggerGameOver()
+    {
+        gameIsPaused = true;
+        gameOverMenu.SetActive(true);
+        pauseButton.SetActive(false);
+        joystick.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     public bool GameIsPaused()

@@ -9,6 +9,7 @@ public class Block : MonoBehaviour
     private Material defaultMaterial;
 
     [SerializeField]
+    private int baseHitPoints;
     private int hitPoints;
 
     private SpriteRenderer spriteRenderer;
@@ -22,6 +23,7 @@ public class Block : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMaterial = spriteRenderer.material;
         minimapSpriteRenderer.color = spriteRenderer.color;
+        hitPoints = baseHitPoints;
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class Block : MonoBehaviour
         if (hitPoints < 1)
         {
             Destroy(this.gameObject);
+            GameManager.Instance.AddToScore(baseHitPoints);
         }       
     }
 

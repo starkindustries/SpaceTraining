@@ -2541,6 +2541,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 5929008933005325354}
   gameOverMenu: {fileID: 7696470563079913069}
   joystick: {fileID: 1539360204}
+  scoreText: {fileID: 1093769187}
 --- !u!114 &1501626375
 MonoBehaviour:
   m_ObjectHideFlags: 0

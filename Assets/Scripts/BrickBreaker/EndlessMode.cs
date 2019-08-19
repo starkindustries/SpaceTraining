@@ -16,11 +16,7 @@ public class EndlessMode : MonoBehaviour
 
     // Level Text
     public TextMeshProUGUI levelText;
-    public Animator levelTextAnimator;
-
-    // Score
-    public TextMeshProUGUI scoreText;
-    private int score;
+    public Animator levelTextAnimator;    
 
     private float blockShiftInterval;
     private int rowsToSpawn;
@@ -284,10 +280,5 @@ public class EndlessMode : MonoBehaviour
             }
         }
         return indices;
-    }
-
-    public void AddToScore(int points)
-    {
-
     }
 }

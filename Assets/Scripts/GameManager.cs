@@ -5,12 +5,20 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {    
+    // Pause button and menu
     public GameObject pauseButton;
     public GameObject pauseMenu;
-    public GameObject gameOverMenu;
-    public GameObject joystick;    
+    private bool gameIsPaused;
 
-    private bool gameIsPaused;    
+    // Game over menu
+    public GameObject gameOverMenu;
+
+    // Joystick
+    public GameObject joystick;        
+
+    // Score vars
+    public TextMeshProUGUI scoreText;
+    private int score;
 
     // Singleton pattern
     // https://gamedev.stackexchange.com/a/116010/123894
@@ -40,13 +48,7 @@ public class GameManager : MonoBehaviour
 
         // Load player data & load level
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     // Game Actions
     public void DidPressPause()
     {
@@ -86,5 +88,12 @@ public class GameManager : MonoBehaviour
     public bool GameIsPaused()
     {
         return gameIsPaused;
+    }
+
+
+    public void AddToScore(int points)
+    {
+        score += points;
+        scoreText.text = score.ToString();
     }
 }

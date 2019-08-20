@@ -40,6 +40,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.GameIsPaused())
+        {
+            return;
+        }
+
 #if UNITY_EDITOR
         // Shoot
         if (Input.GetButtonDown("Jump"))

@@ -46,7 +46,10 @@ public class GameManager : MonoBehaviour
         // Hide pause and game over menus on first load
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
-        scoreText.text = "0";        
+
+        PlayerData data = SaveSystem.LoadPlayerData();
+        score = data.currentScore;
+        scoreText.text = score.ToString();
     }
     
     // Game Actions
@@ -98,8 +101,14 @@ public class GameManager : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayerData();
         if (score > data.highscore)
         {
-            SaveSystem.SavePlayerData(highscore: score, currentLevel: 0);
+            SaveSystem.SavePlayerData(highscore: score, currentLevel: 0, currentScore: 0);
         }
+    }
+
+    public void SaveCurrentProgress(int currentLevel)
+    {
+        PlayerData data = SaveSystem.LoadPlayerData();
+        SaveSystem.SavePlayerData(highscore: data.highscore, currentLevel: currentLevel, currentScore: score);
     }
 
     public bool GameIsPaused()

@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject title;
     public GameObject menuPanel;
+    public TextMeshProUGUI highscoreTitleText;
     public TextMeshProUGUI highscoreNumberText;
     public TextMeshProUGUI startButtonText;
 
@@ -30,7 +31,7 @@ public class MainMenu : MonoBehaviour
         {
             // start new level
             Debug.Log("No save file. Creating one now..");
-            SaveSystem.SavePlayerData(highscore: 0, currentLevel: 0);
+            SaveSystem.SavePlayerData(highscore: 0, currentLevel: 1, currentScore: 0);
             data = SaveSystem.LoadPlayerData();
         }
         else
@@ -43,10 +44,14 @@ public class MainMenu : MonoBehaviour
         // Set the highscore number text
         if (data.highscore > 0)
         {
+            highscoreTitleText.gameObject.SetActive(true);
+            highscoreNumberText.gameObject.SetActive(true);
             highscoreNumberText.text = data.highscore.ToString();
         }
         else
         {
+            highscoreTitleText.gameObject.SetActive(false);
+            highscoreNumberText.gameObject.SetActive(false);
             highscoreNumberText.text = "";
         }
 

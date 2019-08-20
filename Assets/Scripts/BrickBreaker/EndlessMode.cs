@@ -47,7 +47,7 @@ public class EndlessMode : MonoBehaviour
     private int rowSpawnCount;    
 
     // Player's current level
-    private int currentLevel = 1;
+    private int currentLevel;
 
     // Bool to prevent multiple SetupNextLevel() coroutine calls
     private bool isSettingUpLevel = false;
@@ -65,19 +65,23 @@ public class EndlessMode : MonoBehaviour
             Debug.LogError("Min block shift interval greater than max: " + minBlockShiftInterval + " " + maxBlockShiftInterval);
         }
 
-        SetGameData(1);
+        
 
-        // Load player data
+        // Load player data. Set current level
         PlayerData data = SaveSystem.LoadPlayerData();
         if (data == null)
         {
             // start new level
+            currentLevel = 1;
             Debug.LogError("No save file. Start new level");
         }
         else
         {
+            currentLevel = data.currentLevel;
             Debug.Log("Save file found. Load player data!");
         }
+
+        SetGameData(currentLevel);
 
         // Play level text animation
         SetLevelAndAnimate("LEVEL " + currentLevel);
@@ -162,6 +166,9 @@ public class EndlessMode : MonoBehaviour
 
         // Increment level and increase difficulty
         currentLevel++;
+
+        // Save current level in case user's phone dies!
+        GameManager.Instance.SaveCurrentProgress(currentLevel: currentLevel);
 
         // Show next level text
         SetLevelAndAnimate("LEVEL " + currentLevel);

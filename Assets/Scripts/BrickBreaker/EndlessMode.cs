@@ -9,10 +9,13 @@ public class EndlessMode : MonoBehaviour
     public GameObject[] blockPrefabs;
     public Tilemap tilemap;
     public int levelWidth;
+    public float maxBlockShiftInterval;
     public float minBlockShiftInterval;
     public int minRowsToSpawn;
     [Range(0f, 1f)]
-    public float skipPercentage;
+    public float maxSkipPercentage;
+    [Range(0f, 1f)]
+    public float minSkipPercentage;
 
     // Level Text
     public TextMeshProUGUI levelText;
@@ -52,6 +55,16 @@ public class EndlessMode : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // Check if values make sense
+        if (minSkipPercentage > maxSkipPercentage)
+        {
+            Debug.LogError("Min skip percentage is greater than max: " + minSkipPercentage + " " + maxSkipPercentage);
+        }
+        if (minBlockShiftInterval > maxBlockShiftInterval)
+        {
+            Debug.LogError("Min block shift interval greater than max: " + minBlockShiftInterval + " " + maxBlockShiftInterval);
+        }
+
         SetGameData(1);
 
         // Load player data
@@ -108,6 +121,7 @@ public class EndlessMode : MonoBehaviour
             // Generate new row of blocks if the limit has not been reached        
             if (rowSpawnCount < rowsToSpawn)
             {
+                float skipPercentage = Random.Range(min: minSkipPercentage, max: maxSkipPercentage);
                 List<GameObject> row = EndlessMode.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: skipPercentage, origin: origin, parent: tilemap);
                 blocks.AddRange(row);
                 rowSpawnCount++;
@@ -172,9 +186,13 @@ public class EndlessMode : MonoBehaviour
         rowsToSpawn = minRowsToSpawn + (level - 1) / 2;
         
         // Decrease block shift interval by 0.1 per level
-        blockShiftInterval = minBlockShiftInterval - (level - 1) * 0.1f;
+        blockShiftInterval = maxBlockShiftInterval - (level - 1) * 0.01f;
+        if (blockShiftInterval < minBlockShiftInterval)
+        {
+            blockShiftInterval = minBlockShiftInterval;
+        }
 
-        Debug.Log("Level: " + level + ". Rows to spawn: " + rowsToSpawn + ". Interval: " + blockShiftInterval);
+        Debug.Log("Level: " + level + ". Rows: " + rowsToSpawn + ". Interval: " + blockShiftInterval);
     }
 
     private void SetLevelAndAnimate(string level)

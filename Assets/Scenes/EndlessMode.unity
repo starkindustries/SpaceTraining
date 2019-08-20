@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4975c64cc6930fa40a27948396b731b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAds: 60
+  timeBetweenAds: 300
 --- !u!1 &1539360204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2929252283123773939, guid: aaa2c939c0359ac4dbce3f49e8b90252,

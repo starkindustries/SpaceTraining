@@ -38,7 +38,7 @@ public class AdsManager: MonoBehaviour
 
     private void Start()
     {
-        Advertisement.Initialize(gameId: gameId, testMode: true);
+        Advertisement.Initialize(gameId: gameId, testMode: false);
     }
 
     private void Update()

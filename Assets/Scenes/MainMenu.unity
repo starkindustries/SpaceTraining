@@ -1672,6 +1672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 1857338751}
   menuPanel: {fileID: 7641900269923246824}
+  highscoreTitleText: {fileID: 1981713001}
   highscoreNumberText: {fileID: 936012283}
   startButtonText: {fileID: 981969874}
 --- !u!4 &1776568160
@@ -1791,6 +1792,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981713001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 990334104160828793, guid: 5134e00631b60424ebe8dd84622033e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3057849986359514541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2003711611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,11 +2187,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1614761742224064036, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2273,6 +2281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614761742224064036, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e15ee27fc2bd3340bdfbb8d352e9204, type: 3}

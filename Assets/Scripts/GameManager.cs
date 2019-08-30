@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayerData();
         if (score > data.highscore)
         {
-            SaveSystem.SavePlayerData(highscore: score, currentLevel: 0, currentScore: 0);
+            SaveSystem.SavePlayerData(highscore: score, currentLevel: 1, currentScore: 0);
         }
     }
 

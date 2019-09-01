@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
-{    
+{
+    // Camera
+    public float sceneWidth = 12f;
+    public CinemachineVirtualCamera vcamera;
+
     // Pause button and menu
     public GameObject pauseButton;
     public GameObject pauseMenu;
@@ -42,7 +47,12 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        // Adjust camera to fit field        
+        float unitsPerPixel = sceneWidth / Screen.width;
+        float desiredHalfHeight = 0.5f * unitsPerPixel * Screen.height;
+        vcamera.m_Lens.OrthographicSize = desiredHalfHeight;
+
         // Hide pause and game over menus on first load
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);

@@ -32,10 +32,11 @@ public class EndlessMode : MonoBehaviour
     // 
     // Origin is set here so that blocks can be generated behind the top border
     // and then slide down into the playable space.
-    private Vector3 origin = new Vector3(x: -0.5f, y: 24.5f);
+    public Vector2 origin2D;
+    private Vector3 origin;
 
     // bottomY is the lowest allowable block positin before GameOver
-    private float bottomY = -0.5f;
+    public float bottomY;
 
     // This keeps the time since the last block down-shift
     private float timeSinceLastBlockShift;
@@ -55,6 +56,8 @@ public class EndlessMode : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        origin = new Vector3(x: origin2D.x, y: origin2D.y);
+
         // Check if values make sense
         if (minSkipPercentage > maxSkipPercentage)
         {

@@ -113,6 +113,10 @@ public class GameManager : MonoBehaviour
         {
             SaveSystem.SavePlayerData(highscore: score, currentLevel: 1, currentScore: 0);
         }
+        else
+        {
+            SaveSystem.SavePlayerData(highscore: data.highscore, currentLevel: 1, currentScore: 0);
+        }
     }
 
     public void SaveCurrentProgress(int currentLevel)

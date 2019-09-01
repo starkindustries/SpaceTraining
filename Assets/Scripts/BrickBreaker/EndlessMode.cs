@@ -84,6 +84,14 @@ public class EndlessMode : MonoBehaviour
             Debug.Log("Save file found. Load player data!");
         }
 
+        // Verify current level is greater than zero (or not less than 1)
+        // Set to 1 by default if invalid
+        if (currentLevel < 1)
+        {
+            Debug.LogError("Invalid current level: " + currentLevel);
+            currentLevel = 1;
+        }
+
         SetGameData(currentLevel);
 
         // Play level text animation

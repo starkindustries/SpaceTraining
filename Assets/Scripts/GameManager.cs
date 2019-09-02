@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Adjust camera to fit field        
+        // Reference:
+        // https://forum.unity.com/threads/how-to-programmatically-change-virtual-cams-orthographic-size.499491/
         float unitsPerPixel = sceneWidth / Screen.width;
         float desiredHalfHeight = 0.5f * unitsPerPixel * Screen.height;
         vcamera.m_Lens.OrthographicSize = desiredHalfHeight;

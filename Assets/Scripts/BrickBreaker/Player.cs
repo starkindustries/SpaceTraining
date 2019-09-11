@@ -40,9 +40,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.GameIsPaused())
+        // Check if GameManager exists
+        if(GameManager.Instance)
         {
-            return;
+            if (GameManager.Instance.GameIsPaused())
+            {
+                return;
+            }
         }
 
 #if UNITY_EDITOR

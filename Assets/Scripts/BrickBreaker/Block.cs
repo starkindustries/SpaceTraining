@@ -34,16 +34,24 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("block struct. hit points: " + hitPoints);
-        hitPoints--;
-        
-        StartCoroutine(HitAnimation());
+        // Only count collisions from bullets
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log("block struct. hit points: " + hitPoints);
+            hitPoints--;
+            StartCoroutine(HitAnimation());
+        }        
 
         // Destroy block if HP = 0
         if (hitPoints < 1)
         {
             Destroy(this.gameObject);
-            GameManager.Instance.AddToScore(baseHitPoints);
+            
+            // Check if GameManager exists
+            if (GameManager.Instance)
+            {
+                GameManager.Instance.AddToScore(baseHitPoints);
+            } 
         }       
     }
 

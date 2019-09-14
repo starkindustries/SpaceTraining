@@ -5674,7 +5674,8 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.1273585
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 280675545928547182, guid: e98ec84fa7eb69f49a3c27fcf0ffc016, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e98ec84fa7eb69f49a3c27fcf0ffc016, type: 3}
 --- !u!4 &755512215 stripped
 Transform:
@@ -17984,6 +17985,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2118303627}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2118744915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 280675545928547168, guid: e98ec84fa7eb69f49a3c27fcf0ffc016,
+    type: 3}
+  m_PrefabInstance: {fileID: 755512214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2118744916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118744915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b2131d1bec1ff4ca6015ed01d2323a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteFlash: {fileID: 2100000, guid: 57a3af7daa45ee8478acb18983f7be1e, type: 2}
+  level: 5
 --- !u!4 &2137021203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1262870262283136980, guid: 87337acf77f32604cbac457b052bfc85,

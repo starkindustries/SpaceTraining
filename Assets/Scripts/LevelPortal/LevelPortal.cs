@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelPortal : MonoBehaviour
+public static class LevelPortal
 {
-    // Start is called before the first frame update
-    void Start()
+    public static void GoToLevel(int level)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.LogError("STOPPED HERE");
+        // GameManager.Instance.SetCurrentLevel()
+        SceneChanger.Instance.FadetoScene(1); // fade to endless mode scene
     }
 }

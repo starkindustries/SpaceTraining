@@ -25,6 +25,7 @@ public class PortalBlock : MonoBehaviour
         {
             Debug.Log("portal block struct: " + level);
             StartCoroutine(HitAnimation());
+            LevelPortal.GoToLevel(level);
         }        
     }
 

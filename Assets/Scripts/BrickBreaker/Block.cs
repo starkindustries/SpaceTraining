@@ -46,12 +46,7 @@ public class Block : MonoBehaviour
         if (hitPoints < 1)
         {
             Destroy(this.gameObject);
-            
-            // Check if GameManager exists
-            if (GameManager.Instance)
-            {
-                GameManager.Instance.AddToScore(baseHitPoints);
-            } 
+            EndlessModeManager.Instance.AddToScore(baseHitPoints);
         }       
     }
 

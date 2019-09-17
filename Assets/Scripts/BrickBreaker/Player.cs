@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{    
+{
+    // Used if player input should be ignored. for example when the game is paused
+    public bool shouldIgnoreInput;
+
     // Shooting
     public Transform firePoint;
     public GameObject bullet;
@@ -40,13 +43,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if GameManager exists
-        if(GameManager.Instance)
+        // Check if should ignore input
+        if(shouldIgnoreInput)
         {
-            if (GameManager.Instance.GameIsPaused())
-            {
-                return;
-            }
+            return;            
         }
 
 #if UNITY_EDITOR

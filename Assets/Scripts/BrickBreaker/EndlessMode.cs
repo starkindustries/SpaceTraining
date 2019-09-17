@@ -53,6 +53,9 @@ public class EndlessMode : MonoBehaviour
     // Bool to prevent multiple SetupNextLevel() coroutine calls
     private bool isSettingUpLevel = false;
 
+    // GameIsPaused: Bool set by manager when game is paused
+    public bool gameIsPaused = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -100,8 +103,8 @@ public class EndlessMode : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {
-        if (isSettingUpLevel || GameManager.Instance.GameIsPaused())
+    {        
+        if (isSettingUpLevel || gameIsPaused)
         {
             return;
         }
@@ -155,7 +158,7 @@ public class EndlessMode : MonoBehaviour
             {
                 // Game Over
                 Debug.Log("Block hit the bottom wall! GameOver!!");
-                GameManager.Instance.DidTriggerGameOver();
+                EndlessModeManager.Instance.DidTriggerGameOver();
             }
         }
     }        
@@ -179,7 +182,8 @@ public class EndlessMode : MonoBehaviour
         currentLevel++;
 
         // Save current level in case user's phone dies!
-        GameManager.Instance.SaveCurrentProgress(currentLevel: currentLevel);
+        Debug.LogError("TODO: GameManager.Instance.SaveCurrentProgress");
+        EndlessModeManager.Instance.SaveCurrentProgress(currentLevel: currentLevel);
 
         // Show next level text
         SetLevelAndAnimate("LEVEL " + currentLevel);

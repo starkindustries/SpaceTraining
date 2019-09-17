@@ -635,7 +635,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546702418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: 6.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 665192810}
@@ -715,6 +715,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &549506427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1262870262283136979, guid: 87337acf77f32604cbac457b052bfc85,
+    type: 3}
+  m_PrefabInstance: {fileID: 1262870264277513415}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549506425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067aca6e3eec5fb4696dcc77c628ca12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &569494927
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +824,7 @@ PrefabInstance:
     - target: {fileID: 7278994842131819739, guid: 5134e00631b60424ebe8dd84622033e3,
         type: 3}
       propertyPath: m_Name
-      value: ScoreText
+      value: GameOverScoreText
       objectReference: {fileID: 0}
     - target: {fileID: 8927257360247160128, guid: 5134e00631b60424ebe8dd84622033e3,
         type: 3}
@@ -1092,7 +1104,7 @@ GameObject:
   - component: {fileID: 1093769188}
   - component: {fileID: 1093769187}
   m_Layer: 5
-  m_Name: Score
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3308,8 +3320,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1501626373}
-  - component: {fileID: 1501626372}
-  - component: {fileID: 1501626374}
   - component: {fileID: 1501626375}
   m_Layer: 0
   m_Name: GameManager
@@ -3318,32 +3328,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1501626372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501626371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aed433970fd98642be86729774d6581, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockPrefabs:
-  - {fileID: 7783214970547588923, guid: b7e0ce6f7ff89ae4293ecb3ac80d336a, type: 3}
-  - {fileID: 893690474543033623, guid: 9d1b22a81a164b94895897b37af8fe3f, type: 3}
-  tilemap: {fileID: 1671914813}
-  levelWidth: 12
-  maxBlockShiftInterval: 5
-  minBlockShiftInterval: 1
-  minRowsToSpawn: 10
-  maxSkipPercentage: 0.7
-  minSkipPercentage: 0
-  levelText: {fileID: 1429320632}
-  levelTextAnimator: {fileID: 349326499}
-  origin2D: {x: 6.5, y: 22.5}
-  bottomY: 2.5
 --- !u!4 &1501626373
 Transform:
   m_ObjectHideFlags: 0
@@ -3356,28 +3340,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1501626374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501626371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c8415a334a34345bc6616dacae2f97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneWidth: 12
-  vcamera: {fileID: 569494928}
-  pauseButton: {fileID: 1551674545}
-  pauseMenu: {fileID: 5929008933005325354}
-  gameOverMenu: {fileID: 7696470563079913069}
-  gameOverScoreText: {fileID: 1620148982}
-  joystick: {fileID: 1539360204}
-  scoreText: {fileID: 1093769187}
 --- !u!114 &1501626375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3479,7 +3443,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1501626374}
+      - m_Target: {fileID: 1736933204}
         m_MethodName: DidPressPause
         m_Mode: 1
         m_Arguments:
@@ -3580,7 +3544,7 @@ PrefabInstance:
     - target: {fileID: 1288670885014249873, guid: 7929922c455c7b249b77b98471a071cc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1288670885014249873, guid: 7929922c455c7b249b77b98471a071cc,
         type: 3}
@@ -3798,6 +3762,87 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1736933202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1736933205}
+  - component: {fileID: 1736933204}
+  - component: {fileID: 1736933203}
+  m_Layer: 0
+  m_Name: EndlessMode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1736933203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736933202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aed433970fd98642be86729774d6581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockPrefabs:
+  - {fileID: 7783214970547588923, guid: b7e0ce6f7ff89ae4293ecb3ac80d336a, type: 3}
+  - {fileID: 893690474543033623, guid: 9d1b22a81a164b94895897b37af8fe3f, type: 3}
+  tilemap: {fileID: 1671914813}
+  levelWidth: 12
+  maxBlockShiftInterval: 5
+  minBlockShiftInterval: 1
+  minRowsToSpawn: 10
+  maxSkipPercentage: 0.7
+  minSkipPercentage: 0
+  levelText: {fileID: 1429320632}
+  levelTextAnimator: {fileID: 349326499}
+  origin2D: {x: 6.5, y: 22.5}
+  bottomY: 0.5
+  gameIsPaused: 0
+--- !u!114 &1736933204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736933202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d599c50b74c9f1e41acb32536c1ec16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneWidth: 12
+  vcamera: {fileID: 569494928}
+  pauseButton: {fileID: 1551674545}
+  pauseMenu: {fileID: 5929008933005325354}
+  gameOverMenu: {fileID: 7696470563079913069}
+  gameOverScoreText: {fileID: 1620148982}
+  joystick: {fileID: 1539360204}
+  scoreText: {fileID: 1093769187}
+  player: {fileID: 549506427}
+  endlessMode: {fileID: 1736933203}
+--- !u!4 &1736933205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736933202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2137021203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1262870262283136980, guid: 87337acf77f32604cbac457b052bfc85,
@@ -3952,6 +3997,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1262870262283136979, guid: 87337acf77f32604cbac457b052bfc85,
+        type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 1630780339}
     - target: {fileID: 1262870262283136980, guid: 87337acf77f32604cbac457b052bfc85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4012,11 +4062,6 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1262870262283136979, guid: 87337acf77f32604cbac457b052bfc85,
-        type: 3}
-      propertyPath: joystick
-      value: 
-      objectReference: {fileID: 1630780339}
     - target: {fileID: 1262870263723042169, guid: 87337acf77f32604cbac457b052bfc85,
         type: 3}
       propertyPath: m_Layer
@@ -4557,6 +4602,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_text
+      value: RESUME
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -4576,7 +4636,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1501626374}
+      objectReference: {fileID: 1736933204}
     - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -4586,21 +4646,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_text
-      value: RESUME
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e15ee27fc2bd3340bdfbb8d352e9204, type: 3}
@@ -4760,7 +4805,7 @@ GameObject:
   - component: {fileID: 6973438312438625990}
   - component: {fileID: 1825813236735656850}
   m_Layer: 5
-  m_Name: PausePanel
+  m_Name: PauseMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4891,36 +4936,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1501626374}
-    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DidPressMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -4955,6 +4970,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1736933204}
+    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DidPressMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e15ee27fc2bd3340bdfbb8d352e9204, type: 3}
@@ -5169,7 +5214,7 @@ GameObject:
   - component: {fileID: 6359619475188644993}
   - component: {fileID: 2436973454869875157}
   m_Layer: 5
-  m_Name: GameOverPanel
+  m_Name: GameOverMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

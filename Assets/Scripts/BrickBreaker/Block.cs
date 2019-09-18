@@ -9,7 +9,7 @@ public class Block : MonoBehaviour
     private Material defaultMaterial;
 
     [SerializeField]
-    private int baseHitPoints;
+    private int baseHitPoints = 10;
     private int hitPoints;
 
     private SpriteRenderer spriteRenderer;

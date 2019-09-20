@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class LevelPortal
+public class LevelPortal : MonoBehaviour
 {
+    public void Start()
+    {
+        // Get player's current level from GameManager then create the portal        
+        // GameManager.Instance
+
+        // 
+        Debug.Log("success. creating level");
+    }
+
     public static void GoToLevel(int level)
     {
         Debug.LogError("STOPPED HERE");

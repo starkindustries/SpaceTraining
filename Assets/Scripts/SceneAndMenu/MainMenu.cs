@@ -7,8 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject title;
     public GameObject menuPanel;
-    public TextMeshProUGUI highscoreTitleText;
-    public TextMeshProUGUI highscoreNumberText;
     public TextMeshProUGUI startButtonText;
 
     private bool menuPanelLoaded;
@@ -23,47 +21,10 @@ public class MainMenu : MonoBehaviour
 
         // Show title and disable menuPanel on first load
         title.SetActive(true);
-        menuPanel.SetActive(false);        
+        menuPanel.SetActive(false);
 
-        // Load Player data from save file
-        data = SaveSystem.LoadPlayerData();
-        if (data == null)
-        {
-            // start new level
-            Debug.Log("No save file. Creating one now..");
-            SaveSystem.SavePlayerData(highscore: 0, currentLevel: 1, currentScore: 0);
-            data = SaveSystem.LoadPlayerData();
-        }
-        else
-        {
-            Debug.Log("Save file found. Load player data!");
-        }
-        Debug.Log("Current level: " + data.currentLevel);
-        Debug.Log("high score: " + data.highscore);
-
-        // Set the highscore number text
-        if (data.highscore > 0)
-        {
-            highscoreTitleText.gameObject.SetActive(true);
-            highscoreNumberText.gameObject.SetActive(true);
-            highscoreNumberText.text = data.highscore.ToString();
-        }
-        else
-        {
-            highscoreTitleText.gameObject.SetActive(false);
-            highscoreNumberText.gameObject.SetActive(false);
-            highscoreNumberText.text = "";
-        }
-
-        // Set the start button text
-        if (data.currentLevel > 1)
-        {
-            startButtonText.text = "CONTINUE";
-        }
-        else
-        {
-            startButtonText.text = "NEW GAME";
-        }
+        // Set the start button text        
+        startButtonText.text = "START";
     }
 
     // Update is called once per frame

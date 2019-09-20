@@ -183,7 +183,7 @@ public class EndlessMode : MonoBehaviour
 
         // Save current level in case user's phone dies!
         Debug.LogError("TODO: GameManager.Instance.SaveCurrentProgress");
-        EndlessModeManager.Instance.SaveCurrentProgress(currentLevel: currentLevel);
+        // EndlessModeManager.Instance.SaveCurrentProgress(currentLevel: currentLevel);
 
         // Show next level text
         SetLevelAndAnimate("LEVEL " + currentLevel);

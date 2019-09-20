@@ -4,15 +4,11 @@ using UnityEngine;
 
 [System.Serializable]
 public class PlayerData
-{
-    public int highscore;
-    public int currentLevel;
-    public int currentScore;
+{    
+    public int currentLevel;    
 
-    public PlayerData(int newHighscore, int newCurrentLevel, int newCurrentScore)
-    {
-        highscore = newHighscore;
+    public PlayerData(int newCurrentLevel)
+    {        
         currentLevel = newCurrentLevel;
-        currentScore = newCurrentScore;
     }
 }

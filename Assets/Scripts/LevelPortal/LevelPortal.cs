@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class LevelPortal : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject portalBlockPrefab;
+
+    [SerializeField]
+    private GameObject grid;
+
     public void Start()
     {
         // Get player's current level from GameManager then create the portal        
@@ -11,6 +17,10 @@ public class LevelPortal : MonoBehaviour
 
         // 
         Debug.Log("success. creating level");
+
+        Vector3 position = new Vector3(x: 8f, y: 17.5f);
+        portalBlockPrefab.GetComponent<PortalBlock>().level = 1;
+        GameObject block = GameObject.Instantiate(original: portalBlockPrefab, position: position, rotation: Quaternion.identity, parent: grid.transform);
     }
 
     public static void GoToLevel(int level)

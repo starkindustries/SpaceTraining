@@ -9,7 +9,7 @@ public class PortalBlock : MonoBehaviour
     private Material defaultMaterial;
 
     [SerializeField]
-    private int level = 1;
+    public int level = 1;
 
     // Start is called before the first frame update
     void Start()

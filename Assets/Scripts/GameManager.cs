@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    PlayerData data;
+    private PlayerData data;
 
     // Singleton pattern
     // https://gamedev.stackexchange.com/a/116010/123894
@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
         {
             // Null data. Create new save file.
             Debug.Log("No save file. Creating one now..");
+            data = new PlayerData(newCurrentLevel: 1);
+            SaveSystem.SavePlayerData(data);
             // SaveSystem.SavePlayerData(highscore: 0, currentLevel: 1, currentScore: 0);
             // data = SaveSystem.LoadPlayerData();
         }

@@ -5930,9 +5930,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b4a70a37d29a74fb2d7706ffd495e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 665192808}
   portalBlockPrefab: {fileID: 648208143188745141, guid: 50f16f8da88c4f94ea936bfba498ad12,
     type: 3}
-  grid: {fileID: 665192808}
+  firstBlockPosition: {x: 8, y: 17.5, z: 0}
 --- !u!1001 &808261900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13315,43 +13316,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1501626373}
-  - component: {fileID: 1501626372}
   - component: {fileID: 1501626374}
-  - component: {fileID: 1501626375}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1501626372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501626371}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aed433970fd98642be86729774d6581, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockPrefabs:
-  - {fileID: 7783214970547588923, guid: b7e0ce6f7ff89ae4293ecb3ac80d336a, type: 3}
-  - {fileID: 893690474543033623, guid: 9d1b22a81a164b94895897b37af8fe3f, type: 3}
-  tilemap: {fileID: 1671914813}
-  levelWidth: 12
-  maxBlockShiftInterval: 5
-  minBlockShiftInterval: 1
-  minRowsToSpawn: 10
-  maxSkipPercentage: 0.7
-  minSkipPercentage: 0
-  levelText: {fileID: 0}
-  levelTextAnimator: {fileID: 0}
-  origin2D: {x: 6.5, y: 22.5}
-  bottomY: 2.5
-  gameIsPaused: 0
+  m_IsActive: 1
 --- !u!4 &1501626373
 Transform:
   m_ObjectHideFlags: 0
@@ -13378,19 +13350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c8415a334a34345bc6616dacae2f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1501626375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501626371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4975c64cc6930fa40a27948396b731b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBetweenAds: 300
 --- !u!1001 &1516294784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18069,6 +18028,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 648208143188745145, guid: 50f16f8da88c4f94ea936bfba498ad12,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 648208143188745145, guid: 50f16f8da88c4f94ea936bfba498ad12,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 260.26468
+      objectReference: {fileID: 0}
+    - target: {fileID: 648208143188745145, guid: 50f16f8da88c4f94ea936bfba498ad12,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 105.97845
+      objectReference: {fileID: 0}
+    - target: {fileID: 648208143188745145, guid: 50f16f8da88c4f94ea936bfba498ad12,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 35.602253
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50f16f8da88c4f94ea936bfba498ad12, type: 3}

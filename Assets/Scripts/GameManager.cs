@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private PlayerData data;
+    private PlayerData playerData;
 
     // Singleton pattern
     // https://gamedev.stackexchange.com/a/116010/123894
@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     private void Awake()
-    {
-        // Singleton Enforcement Code
+    {        
+        // Singleton Enforcement Code        
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -23,29 +23,29 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-
-        // Don't Destroy On Load
+        
+        // Don't Destroy On Load        
         DontDestroyOnLoad(gameObject);
-    }
 
-    private void Start()
-    {       
-        // Load Player data from save file
-        data = SaveSystem.LoadPlayerData();
+        // Load Player data from save file        
+        playerData = SaveSystem.LoadPlayerData();
 
         // Check if data is null
-        if (data == null)
+        if (playerData == null)
         {
             // Null data. Create new save file.
             Debug.Log("No save file. Creating one now..");
-            data = new PlayerData(newCurrentLevel: 1);
-            SaveSystem.SavePlayerData(data);
-            // SaveSystem.SavePlayerData(highscore: 0, currentLevel: 1, currentScore: 0);
-            // data = SaveSystem.LoadPlayerData();
+            playerData = new PlayerData(newCurrentLevel: 1);
+            SaveSystem.SavePlayerData(playerData);            
         }
         else
         {
             Debug.Log("Save file found. Player data loaded successfully!");
-        }        
+        }
+    }
+    
+    public PlayerData GetPlayerData()
+    {
+        return playerData;
     }
 }

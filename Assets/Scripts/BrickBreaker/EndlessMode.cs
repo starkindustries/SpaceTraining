@@ -71,30 +71,10 @@ public class EndlessMode : MonoBehaviour
             Debug.LogError("Min block shift interval greater than max: " + minBlockShiftInterval + " " + maxBlockShiftInterval);
         }
 
-        
+
 
         // Load player data. Set current level
-        PlayerData data = SaveSystem.LoadPlayerData();
-        if (data == null)
-        {
-            // start new level
-            currentLevel = 1;
-            Debug.LogError("No save file. Start new level");
-        }
-        else
-        {
-            currentLevel = data.currentLevel;
-            Debug.Log("Save file found. Load player data!");
-        }
-
-        // Verify current level is greater than zero (or not less than 1)
-        // Set to 1 by default if invalid
-        if (currentLevel < 1)
-        {
-            Debug.LogError("Invalid current level: " + currentLevel);
-            currentLevel = 1;
-        }
-
+        currentLevel = GameManager.Instance.chosenLevel;        
         SetGameData(currentLevel);
 
         // Play level text animation

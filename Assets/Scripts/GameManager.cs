@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int chosenLevel;
+
     private PlayerData playerData;
 
     // Singleton pattern

@@ -24,8 +24,8 @@ public class PortalBlock : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             Debug.Log("portal block struct: " + level);
-            StartCoroutine(HitAnimation());
-            LevelPortal.GoToLevel(level);
+            StartCoroutine(HitAnimation());            
+            FindObjectOfType<LevelPortal>().GoToLevel(level);
         }        
     }
 

@@ -33,7 +33,10 @@ public class AdsManager: MonoBehaviour
         else
         {
             _instance = this;
-        }        
+        }
+
+        // Don't Destroy On Load
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -44,7 +47,14 @@ public class AdsManager: MonoBehaviour
     private void Update()
     {
         timeSinceLastAd += Time.deltaTime;
-    }    
+
+#if UNITY_EDITOR
+        if (timeSinceLastAd > timeBetweenAds)
+        {
+            Debug.Log("Advertisement ready!");
+        }
+#endif
+    }
 
     public static void ShowVideoAdWhenReady()
     {

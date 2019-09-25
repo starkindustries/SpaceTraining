@@ -50,4 +50,9 @@ public class GameManager : MonoBehaviour
     {
         return playerData;
     }
+
+    public void IncrementCurrentLevel()
+    {
+        playerData.currentLevel++;
+    }
 }

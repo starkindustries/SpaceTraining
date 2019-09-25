@@ -50,8 +50,8 @@ public class EndlessMode : MonoBehaviour
     // Player's current level
     private int currentLevel;
 
-    // Bool to prevent multiple SetupNextLevel() coroutine calls
-    private bool isSettingUpLevel = false;
+    // Bool to prevent multiple FadeToLevelPortal() coroutine calls
+    private bool levelCompleted;
 
     // GameIsPaused: Bool set by manager when game is paused
     public bool gameIsPaused = false;
@@ -59,6 +59,7 @@ public class EndlessMode : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        levelCompleted = false;
         origin = new Vector3(x: origin2D.x, y: origin2D.y);
 
         // Check if values make sense
@@ -84,7 +85,7 @@ public class EndlessMode : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {        
-        if (isSettingUpLevel || gameIsPaused)
+        if (levelCompleted || gameIsPaused)
         {
             return;
         }
@@ -99,8 +100,9 @@ public class EndlessMode : MonoBehaviour
             if (blocks.Count == 0)
             {
                 // Mission Complete! 
-                Debug.Log("MISSION COMPLETE!");                
-                StartCoroutine(SetupNextLevel());
+                Debug.Log("MISSION COMPLETE!");
+                levelCompleted = true;
+                StartCoroutine(FadeToLevelPortal());
             }
         }
 
@@ -143,38 +145,24 @@ public class EndlessMode : MonoBehaviour
         }
     }        
 
-    private IEnumerator SetupNextLevel()
-    {
-        isSettingUpLevel = true;
-
+    private IEnumerator FadeToLevelPortal()
+    {        
         // Mission complete. Show level clear text
         SetLevelAndAnimate("CLEAR");
         yield return new WaitForSeconds(2.0f);
-        Time.timeScale = 0;
 
-        // Show Ad 
+        // Show Ad
         AdsManager.ShowVideoAdWhenReady();
 
-        // Resume time
-        Time.timeScale = 1;        
-
         // Increment level and increase difficulty
-        currentLevel++;
+        GameManager.Instance.IncrementCurrentLevel();
 
-        // Save current level in case user's phone dies!
-        Debug.LogError("TODO: GameManager.Instance.SaveCurrentProgress");
-        // EndlessModeManager.Instance.SaveCurrentProgress(currentLevel: currentLevel);
+        // Transition back to LevelPortal
+        SceneChanger.Instance.FadetoScene(1);
 
-        // Show next level text
-        SetLevelAndAnimate("LEVEL " + currentLevel);
-        yield return new WaitForSeconds(2.0f);
-
-        // Reset the stage conditions
-        SetGameData(currentLevel);
-
-        isSettingUpLevel = false;
+        Debug.Log("FadeToLevelPortal complete!");
     }
-
+    
     private void SetGameData(int level)
     {
         // Reset tracker variables

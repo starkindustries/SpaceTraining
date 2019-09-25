@@ -31,8 +31,6 @@ public class LevelPortal : MonoBehaviour
 
         Debug.Log("success. current level: " + currentLevel);
 
-        currentLevel = 150;
-
         Color[] blockColors = { red, orange, yellow, green, blue, purple };
 
         for (int i = 0; i < currentLevel; i++)

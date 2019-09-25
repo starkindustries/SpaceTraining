@@ -33,6 +33,7 @@ public class SceneChanger : MonoBehaviour
 
     public void FadetoScene(int sceneIndex)
     {
+        Debug.Log("Fading to scene " + sceneIndex);
         sceneToLoad = sceneIndex;
         animator.SetTrigger("FadeOut");
     }

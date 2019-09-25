@@ -93,6 +93,13 @@ public class EndlessModeManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void DidPressSelectLevel()
+    {
+        Debug.Log("Did press SelectLevel button.");
+        SceneChanger.Instance.FadetoScene(sceneIndex: 1);
+        Time.timeScale = 1f;
+    }
+
     public void DidPressMenu()
     {
         Debug.Log("Did press menu button.");

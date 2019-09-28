@@ -35,15 +35,15 @@ public class Player : MonoBehaviour
 
     // Touch variables
     private float[] timeTouchBegan;
-    private bool[] touchDidMove;
-    // private float tapMovementThreshold = 1f;
-    private float tapTimeThreshold = 0.2f;
+    private Vector2[] initialTouchPosition;    
+    private float tapMovementThreshold = 3f; // 3f covers all tap cases done in testing
+    private float tapTimeThreshold = 1f;     // allow one second before a tap will time out
 
     // Start is called before the first frame update
     void Start()
     {
         timeTouchBegan = new float[10];
-        touchDidMove = new bool[10];
+        initialTouchPosition = new Vector2[10];
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -73,23 +73,30 @@ public class Player : MonoBehaviour
         foreach (Touch touch in Input.touches)
         {
             int fingerIndex = touch.fingerId;
+            if (fingerIndex >= 10)
+            {
+                Debug.LogError("Error: finger index out of range: " + fingerIndex);
+                return;
+            }
 
             if (touch.phase == TouchPhase.Began)
             {
                 Debug.Log("Finger #" + fingerIndex.ToString() + " entered!");
-                timeTouchBegan[fingerIndex] = Time.time;
-                touchDidMove[fingerIndex] = false;                
+                timeTouchBegan[fingerIndex] = Time.time;                
+                initialTouchPosition[fingerIndex] = touch.position;
             }
             if (touch.phase == TouchPhase.Moved)
             {
-                Debug.Log("Finger #" + fingerIndex.ToString() + " moved!");
-                touchDidMove[fingerIndex] = true;
+                Debug.Log("Finger #" + fingerIndex.ToString() + " moved!");                
             }
             if (touch.phase == TouchPhase.Ended)
             {
                 float tapTime = Time.time - timeTouchBegan[fingerIndex];
-                Debug.Log("Finger #" + fingerIndex.ToString() + " left. Tap time: " + tapTime.ToString());
-                if (tapTime <= tapTimeThreshold && touchDidMove[fingerIndex] == false)
+                float tapMovementDistance = (touch.position - initialTouchPosition[fingerIndex]).magnitude;
+
+                Debug.Log("Finger #" + fingerIndex + " left. Tap time: " + tapTime + ". Tap distance: " + tapMovementDistance);
+
+                if (tapTime <= tapTimeThreshold && tapMovementDistance <= tapMovementThreshold)
                 {
                     Debug.Log("Finger #" + fingerIndex.ToString() + " TAP DETECTED at: " + touch.position.ToString());
                     StartCoroutine(BurstFire());

@@ -33,9 +33,18 @@ public class Player : MonoBehaviour
     // Animation
     private Animator animator;
 
+    // Touch variables
+    private float[] timeTouchBegan;
+    private bool[] touchDidMove;
+    // private float tapMovementThreshold = 1f;
+    private float tapTimeThreshold = 0.2f;
+
     // Start is called before the first frame update
     void Start()
     {
+        timeTouchBegan = new float[10];
+        touchDidMove = new bool[10];
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -59,15 +68,32 @@ public class Player : MonoBehaviour
 
         // Joystick Movement
         joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;               
-
-        // Player Touches
-        foreach(Touch touch in Input.touches)
+        
+        // Touch Input        
+        foreach (Touch touch in Input.touches)
         {
+            int fingerIndex = touch.fingerId;
+
             if (touch.phase == TouchPhase.Began)
             {
-                // Shoot
-                Debug.Log("Touch began");
-                StartCoroutine(BurstFire());
+                Debug.Log("Finger #" + fingerIndex.ToString() + " entered!");
+                timeTouchBegan[fingerIndex] = Time.time;
+                touchDidMove[fingerIndex] = false;                
+            }
+            if (touch.phase == TouchPhase.Moved)
+            {
+                Debug.Log("Finger #" + fingerIndex.ToString() + " moved!");
+                touchDidMove[fingerIndex] = true;
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                float tapTime = Time.time - timeTouchBegan[fingerIndex];
+                Debug.Log("Finger #" + fingerIndex.ToString() + " left. Tap time: " + tapTime.ToString());
+                if (tapTime <= tapTimeThreshold && touchDidMove[fingerIndex] == false)
+                {
+                    Debug.Log("Finger #" + fingerIndex.ToString() + " TAP DETECTED at: " + touch.position.ToString());
+                    StartCoroutine(BurstFire());
+                }
             }
         }
     }

@@ -2023,7 +2023,7 @@ PrefabInstance:
     - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
@@ -2037,33 +2037,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_fontColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 100
+      value: 4281479730
       objectReference: {fileID: 0}
     - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
@@ -2073,7 +2048,17 @@ PrefabInstance:
     - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
-      value: 5
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619921428719133904, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8751155934655821069, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
         type: 3}
@@ -2104,11 +2089,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1614761742224064036, guid: 5e15ee27fc2bd3340bdfbb8d352e9204,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e15ee27fc2bd3340bdfbb8d352e9204, type: 3}

@@ -36,8 +36,8 @@ public class Player : MonoBehaviour
     // Touch variables
     private float[] timeTouchBegan;
     private Vector2[] initialTouchPosition;    
-    private float tapMovementThreshold = 3f; // 3f covers all tap cases done in testing
-    private float tapTimeThreshold = 1f;     // allow one second before a tap will time out
+    private float tapMovementThreshold = 20f; // 20f covers all tap cases done in testing with phone
+    private float tapTimeThreshold = 1f;      // allow one second before a tap will time out
 
     // Start is called before the first frame update
     void Start()

@@ -7,8 +7,8 @@ using Cinemachine;
 public class EndlessModeManager : MonoBehaviour
 {
     // Camera
-    public float sceneWidth = 12f;
-    public CinemachineVirtualCamera vcamera;
+    // public float sceneWidth = 12f;
+    // public CinemachineVirtualCamera vcamera;
 
     // Pause button and menu
     public GameObject pauseButton;
@@ -52,12 +52,14 @@ public class EndlessModeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         // Adjust camera to fit field        
         // Reference:
         // https://forum.unity.com/threads/how-to-programmatically-change-virtual-cams-orthographic-size.499491/
         float unitsPerPixel = sceneWidth / Screen.width;
         float desiredHalfHeight = 0.5f * unitsPerPixel * Screen.height;
         vcamera.m_Lens.OrthographicSize = desiredHalfHeight;
+        */
 
         // Hide pause and game over menus on first load
         pauseMenu.SetActive(false);

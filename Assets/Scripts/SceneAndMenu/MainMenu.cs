@@ -23,8 +23,11 @@ public class MainMenu : MonoBehaviour
         title.SetActive(true);
         menuPanel.SetActive(false);
 
+        // Get Player Data
+        data = SaveSystem.LoadPlayerData();
+
         // Set the start button text        
-        startButtonText.text = "START";
+        startButtonText.text = "START LEVEL " + data.currentLevel;
     }
 
     // Update is called once per frame

@@ -45,7 +45,12 @@ public class GameManager : MonoBehaviour
             Debug.Log("Save file found. Player data loaded successfully!");
         }
     }
-    
+
+    private void Start()
+    {
+        chosenLevel = playerData.currentLevel;
+    }
+
     public PlayerData GetPlayerData()
     {
         return playerData;

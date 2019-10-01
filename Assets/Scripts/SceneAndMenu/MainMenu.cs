@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
         menuPanel.SetActive(false);
 
         // Get Player Data
-        data = SaveSystem.LoadPlayerData();
+        data = GameManager.Instance.GetPlayerData();
 
         // Set the start button text        
         startButtonText.text = "START LEVEL " + data.currentLevel;

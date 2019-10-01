@@ -75,7 +75,7 @@ public class EndlessMode : MonoBehaviour
 
 
         // Load player data. Set current level
-        currentLevel = GameManager.Instance.chosenLevel;        
+        currentLevel = GameManager.Instance.GetPlayerData().currentLevel;        
         SetGameData(currentLevel);
 
         // Play level text animation
@@ -102,7 +102,7 @@ public class EndlessMode : MonoBehaviour
                 // Mission Complete! 
                 Debug.Log("MISSION COMPLETE!");
                 levelCompleted = true;
-                StartCoroutine(FadeToLevelPortal());
+                StartCoroutine(FadeToMenu());
             }
         }
 
@@ -145,7 +145,7 @@ public class EndlessMode : MonoBehaviour
         }
     }        
 
-    private IEnumerator FadeToLevelPortal()
+    private IEnumerator FadeToMenu()
     {        
         // Mission complete. Show level clear text
         SetLevelAndAnimate("CLEAR");
@@ -158,9 +158,9 @@ public class EndlessMode : MonoBehaviour
         GameManager.Instance.IncrementCurrentLevel();
 
         // Transition back to LevelPortal
-        SceneChanger.Instance.FadetoScene(1);
+        SceneChanger.Instance.FadetoScene(0);
 
-        Debug.Log("FadeToLevelPortal complete!");
+        Debug.Log("Fade to menu complete!");
     }
     
     private void SetGameData(int level)

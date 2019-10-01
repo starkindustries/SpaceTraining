@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int chosenLevel;
-
     private PlayerData playerData;
 
     // Singleton pattern
@@ -44,11 +42,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Save file found. Player data loaded successfully!");
         }
-    }
-
-    private void Start()
-    {
-        chosenLevel = playerData.currentLevel;
     }
 
     public PlayerData GetPlayerData()

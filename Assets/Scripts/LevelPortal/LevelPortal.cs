@@ -43,7 +43,7 @@ public class LevelPortal : MonoBehaviour
             block.GetComponent<SpriteRenderer>().color = blockColors[i / 25];
         }                        
     }
-
+    
     public void GoToLevel(int level)
     {
         if (playerChoseLevel)
@@ -52,7 +52,7 @@ public class LevelPortal : MonoBehaviour
         }
 
         playerChoseLevel = true;
-        GameManager.Instance.chosenLevel = level;
+        // GameManager.Instance.chosenLevel = level;
         
         // fade to endless mode scene
         SceneChanger.Instance.FadetoScene(2); 

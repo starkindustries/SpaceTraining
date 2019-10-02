@@ -80,6 +80,16 @@ public class EndlessMode : MonoBehaviour
 
         // Play level text animation
         SetLevelAndAnimate("LEVEL " + currentLevel);
+
+        // Generate a few rows to start the level off
+        for (int i = 0; i < 10; i++)
+        {
+            float skipPercentage = Random.Range(min: minSkipPercentage, max: maxSkipPercentage);
+            Vector3 rowOrigin = new Vector3(x: origin.x, y: origin.y - i);
+            List<GameObject> row = EndlessMode.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: skipPercentage, origin: rowOrigin, parent: tilemap);
+            blocks.AddRange(row);
+        }
+        rowSpawnCount = 10;
     }
 
     // Update is called once per frame

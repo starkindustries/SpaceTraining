@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
 #endif
 
         // Joystick Movement
-        joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;               
+        joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical);
         
         // Touch Input        
         foreach (Touch touch in Input.touches)

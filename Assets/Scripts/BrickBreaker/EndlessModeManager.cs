@@ -104,7 +104,7 @@ public class EndlessModeManager : MonoBehaviour
 
     public void DidPressMenu()
     {
-        Debug.Log("Did press menu button.");
+        Debug.Log("Did press menu button.");        
         SceneChanger.Instance.FadetoScene(sceneIndex: 0);
         Time.timeScale = 1f;
     }
@@ -113,6 +113,8 @@ public class EndlessModeManager : MonoBehaviour
     {
         // Pause game
         gameIsPaused = true;
+        endlessMode.gameIsPaused = true;
+        player.shouldIgnoreInput = true;
         Time.timeScale = 0f;
 
         // Show game over menu; disable others

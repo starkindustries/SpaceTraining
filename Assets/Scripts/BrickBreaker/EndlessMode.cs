@@ -86,7 +86,7 @@ public class EndlessMode : MonoBehaviour
         for (int i = 0; i < numStartingRows; i++)
         {
             float skipPercentage = Random.Range(min: minSkipPercentage, max: maxSkipPercentage);
-            Vector3 rowOrigin = new Vector3(x: origin.x, y: origin.y - i);
+            Vector3 rowOrigin = new Vector3(x: origin.x, y: origin.y - numStartingRows + i);
             List<GameObject> row = EndlessMode.GenerateRowOfBlocks(rowLength: levelWidth, blocks: blockPrefabs, skipPercentage: skipPercentage, origin: rowOrigin, parent: tilemap);
             blocks.AddRange(row);
         }

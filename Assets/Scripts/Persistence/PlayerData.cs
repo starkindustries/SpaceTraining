@@ -11,4 +11,8 @@ public class PlayerData
     {        
         currentLevel = newCurrentLevel;
     }
+
+    public override string ToString() {
+        return "Player data current level: " + currentLevel;
+    }
 }

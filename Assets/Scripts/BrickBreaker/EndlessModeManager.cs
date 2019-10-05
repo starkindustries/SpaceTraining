@@ -128,28 +128,9 @@ public class EndlessModeManager : MonoBehaviour
         // Hide the little score text
         scoreText.gameObject.SetActive(false);
 
-        // Save high score
-        // Load player data & load level
-        // TODO
-        /*
-        PlayerData data = SaveSystem.LoadPlayerData();
-        if (score > data.highscore)
-        {
-            SaveSystem.SavePlayerData(highscore: score, currentLevel: 1, currentScore: 0);
-        }
-        else
-        {
-            SaveSystem.SavePlayerData(highscore: data.highscore, currentLevel: 1, currentScore: 0);
-        }
-        */
+        // Save player's current level
+        GameManager.Instance.IncrementCurrentLevel();        
     }
-
-    /*
-    public void SaveCurrentProgress(int currentLevel)
-    {
-        PlayerData data = SaveSystem.LoadPlayerData();
-        SaveSystem.SavePlayerData(highscore: data.highscore, currentLevel: currentLevel, currentScore: score);
-    }*/
 
     public bool GameIsPaused()
     {

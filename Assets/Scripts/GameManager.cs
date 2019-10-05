@@ -54,5 +54,6 @@ public class GameManager : MonoBehaviour
     public void IncrementCurrentLevel()
     {
         playerData.currentLevel++;
+        SaveSystem.SavePlayerData(playerData);
     }
 }

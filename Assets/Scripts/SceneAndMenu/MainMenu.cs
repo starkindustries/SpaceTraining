@@ -20,13 +20,26 @@ public class MainMenu : MonoBehaviour
         menuPanelLoaded = false;
 
         // Show title and disable menuPanel on first load
-        title.SetActive(true);
-        menuPanel.SetActive(false);
+        if (GameManager.Instance.shouldDisplayTitleScreen)
+        {
+            title.SetActive(true);
+            menuPanel.SetActive(false);
+
+            // The title should only be displayed once. Flip the boolean
+            GameManager.Instance.shouldDisplayTitleScreen = false;
+        }
+        else
+        {
+            // Load the menu panel
+            menuPanelLoaded = true;
+            title.SetActive(false);
+            menuPanel.SetActive(true);
+        }
 
         // Get Player Data
         data = GameManager.Instance.GetPlayerData();
 
-        // Set the start button text        
+        // Set the start button text
         startButtonText.text = "START LEVEL " + data.currentLevel;
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public bool shouldDisplayTitleScreen = true;
+
     private PlayerData playerData;
 
     // Singleton pattern

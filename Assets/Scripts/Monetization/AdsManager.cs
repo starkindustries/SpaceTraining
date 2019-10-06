@@ -69,6 +69,7 @@ public class AdsManager: MonoBehaviour
         {
             Debug.Log("Showing video ad.");
             Advertisement.Show(placementId: placementId);
+            Instance.timeSinceLastAd = 0;
         }
         else
         {

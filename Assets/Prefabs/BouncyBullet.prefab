@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2961303539636343510}
   - component: {fileID: 8284620041277629990}
   - component: {fileID: 1115374778802142787}
-  m_Layer: 8
-  m_Name: Bullet
+  m_Layer: 12
+  m_Name: BouncyBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

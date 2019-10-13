@@ -45,8 +45,8 @@ public class Block : MonoBehaviour
         // Destroy block if HP = 0
         if (hitPoints < 1)
         {
-            Destroy(this.gameObject);
-            EndlessModeManager.Instance.AddToScore(baseHitPoints);
+            EndlessModeManager.Instance.DestroyedBlock(block: this, position: gameObject.transform.position);
+            Destroy(this.gameObject);            
         }       
     }
 
@@ -58,5 +58,10 @@ public class Block : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         // Re-enable default material
         spriteRenderer.material = defaultMaterial;
+    }
+
+    public int GetBaseHitPoints()
+    {
+        return baseHitPoints;
     }
 }

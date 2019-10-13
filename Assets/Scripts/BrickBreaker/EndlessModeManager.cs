@@ -20,20 +20,17 @@ public class EndlessModeManager : MonoBehaviour
     public TextMeshProUGUI gameOverScoreText;
 
     // Joystick
-    public GameObject joystick;
-
-    // Score vars
-    public TextMeshProUGUI scoreText;
-    private int score;
+    public GameObject joystick;    
 
     // Singleton pattern
     // https://gamedev.stackexchange.com/a/116010/123894
     private static EndlessModeManager _instance;
     public static EndlessModeManager Instance { get { return _instance; } }
 
-    // Public vars
+    
     public Player player;
     public EndlessMode endlessMode;
+    public GameObject coinPrefab;
 
     private void Awake()
     {
@@ -120,13 +117,7 @@ public class EndlessModeManager : MonoBehaviour
         // Show game over menu; disable others
         gameOverMenu.SetActive(true);
         pauseButton.SetActive(false);
-        joystick.SetActive(false);
-
-        // Show score
-        gameOverScoreText.text = "SCORE\n" + score;
-
-        // Hide the little score text
-        scoreText.gameObject.SetActive(false);
+        joystick.SetActive(false);        
 
         // Save player's current level
         GameManager.Instance.IncrementCurrentLevel();        
@@ -137,10 +128,9 @@ public class EndlessModeManager : MonoBehaviour
         return gameIsPaused;
     }
 
-
-    public void AddToScore(int points)
+    public void DestroyedBlock(Block block, Vector3 position)
     {
-        score += points;
-        scoreText.text = score.ToString();
+        Debug.Log("Destroyed block with base hit points: " + block.GetBaseHitPoints());
+        Instantiate(coinPrefab, position, Quaternion.identity);
     }
 }

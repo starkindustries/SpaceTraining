@@ -131,6 +131,17 @@ public class EndlessModeManager : MonoBehaviour
     public void DestroyedBlock(Block block, Vector3 position)
     {
         Debug.Log("Destroyed block with base hit points: " + block.GetBaseHitPoints());
-        Instantiate(coinPrefab, position, Quaternion.identity);
+
+        float coinDropRate = 0.2f;
+        int coinDropCount = 5;
+
+        float shouldDropCoin = Random.Range(0f, 1f);
+        if (shouldDropCoin < coinDropRate)
+        {
+            for(int i = 0; i < coinDropCount; i++)
+            {
+                Instantiate(coinPrefab, position + new Vector3(i*0.001f, 0), Quaternion.identity);
+            }            
+        }
     }
 }

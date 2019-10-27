@@ -132,16 +132,86 @@ public class EndlessModeManager : MonoBehaviour
     {
         Debug.Log("Destroyed block with base hit points: " + block.GetBaseHitPoints());
 
-        float coinDropRate = 0.2f;
-        int coinDropCount = 5;
-
+        float coinDropRate = 0.2f;                
+        
         float shouldDropCoin = Random.Range(0f, 1f);
         if (shouldDropCoin < coinDropRate)
         {
-            for(int i = 0; i < coinDropCount; i++)
-            {
-                Instantiate(coinPrefab, position + new Vector3(i*0.001f, 0), Quaternion.identity);
-            }            
+            DropCoins(position);
+        }
+    }
+
+    private void DropCoins(Vector3 position)
+    {
+        // Drop rate for number of coins:        
+        // 1 coin:  50%
+        // 2 coins: 20%
+        // 3 coins: 15%
+        // 4 coins: 10%
+        // 5 coins: 5%
+        float coinDropRand = Random.Range(0f, 1f);
+        int coinDropCount = 0;
+        if (coinDropRand <= .5f)
+        {
+            coinDropCount = 1;
+        }
+        else if (coinDropRand <= .7f)
+        {
+            coinDropCount = 2;
+        }
+        else if (coinDropRand <= .85f)
+        {
+            coinDropCount = 3;
+        }
+        else if (coinDropRand <= .95f)
+        {
+            coinDropCount = 4;
+        }
+        else if (coinDropRand <= 1f)
+        {
+            coinDropCount = 5;
+        }
+        
+        if (coinDropCount == 5)
+        {
+            // drop 5 coins in this pattern:
+            //   o
+            // o o o
+            //   o
+            Instantiate(coinPrefab, position, Quaternion.identity); // center coin
+            Instantiate(coinPrefab, position + new Vector3(-0.001f, 0), Quaternion.identity); // left coin
+            Instantiate(coinPrefab, position + new Vector3(0.001f, 0), Quaternion.identity); // right coin
+            Instantiate(coinPrefab, position + new Vector3(0, 0.001f), Quaternion.identity); // top coin
+            Instantiate(coinPrefab, position + new Vector3(0, -0.001f), Quaternion.identity); // bottom coin
+        }
+        else if (coinDropCount == 4)
+        {
+            // drop 4 coins in this pattern:
+            // o o
+            // o o            
+            Instantiate(coinPrefab, position + new Vector3(-0.001f, 0.001f), Quaternion.identity); // top left coin
+            Instantiate(coinPrefab, position + new Vector3(-0.001f, -0.001f), Quaternion.identity); // bottom left coin
+            Instantiate(coinPrefab, position + new Vector3(0.001f, 0.001f), Quaternion.identity); // top right
+            Instantiate(coinPrefab, position + new Vector3(0.001f, -0.001f), Quaternion.identity); // bottom right
+        }
+        else if (coinDropCount == 3)
+        {
+            // drop 3 coins in this pattern:
+            //  o
+            // o o
+            Instantiate(coinPrefab, position + new Vector3(0, 0.001f), Quaternion.identity); // top coin
+            Instantiate(coinPrefab, position + new Vector3(-0.001f, -0.001f), Quaternion.identity); // bottom left coin
+            Instantiate(coinPrefab, position + new Vector3(0.001f, -0.001f), Quaternion.identity); // bottom right
+        }
+        else if (coinDropCount == 2)
+        {
+            // drop 2 coins: o - o
+            Instantiate(coinPrefab, position + new Vector3(-0.001f, 0), Quaternion.identity); // left coin
+            Instantiate(coinPrefab, position + new Vector3(0.001f, 0), Quaternion.identity); // right coin
+        }
+        else if (coinDropCount == 1)
+        {
+            Instantiate(coinPrefab, position, Quaternion.identity); // center coin
         }
     }
 }
